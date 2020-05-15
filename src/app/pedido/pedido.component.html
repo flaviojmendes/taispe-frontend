@@ -1,0 +1,73 @@
+<div class="main container">
+
+<!--  Produtos   -->
+  <div class="row">
+
+<!--    Prato 1    -->
+    <div class="col-md-6 text-center">
+      <div class="card" style="width: 18rem;">
+        <img src="../../assets/comida1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Prato 1</h5>
+          <p class="card-text">Pequena descrição do que o prato leva.</p>
+
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-primary" id="prato1" ngbDropdownToggle>{{item1 ? 'Quantidade ' + item1 : 'Eu Quero!'}}</button>
+            <div ngbDropdownMenu aria-labelledby="prato1">
+              <button class="dropdown-item"
+                      *ngFor="let item of qtdDisponivel"
+                      (click)="item1=item">{{item}}</button>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+<!--   Prato 2    -->
+    <div class="col-md-6 text-center">
+      <div class="card" style="width: 18rem;">
+        <img src="../../assets/comida2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Prato 2</h5>
+          <p class="card-text">Pequena descrição do que o prato leva.</p>
+
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-primary" id="prato2" ngbDropdownToggle>{{item2 ? 'Quantidade ' + item2 : 'Eu Quero!'}}</button>
+            <div ngbDropdownMenu aria-labelledby="prato2">
+              <button class="dropdown-item"
+                      *ngFor="let item of qtdDisponivel"
+                      (click)="item2=item">{{item}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--  Observacoes    -->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="form-group text-center">
+        <label for="exampleFormControlTextarea1">Observações</label>
+        <textarea [value]="observacoes" (input)="observacoes = $event.target.value;" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+    </div>
+
+  </div>
+
+<!--  Pedir    -->
+  <div class="row">
+
+    <div class="col-md-12 text-center linha-pedir">
+      <a class="btn btn-primary btn-block btn-lg" (click)="atualizarPedido()" target="_blank" href="https://wa.me/353830474693?text={{pedido}}">Pedir Agora!</a>
+
+
+    </div>
+
+  </div>
+
+
+</div>
