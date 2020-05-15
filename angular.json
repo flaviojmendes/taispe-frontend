@@ -49,6 +49,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "baseHref" : "/mmk",
               "budgets": [
                 {
                   "type": "initial",
