@@ -21,8 +21,8 @@ export class PedidoComponent implements OnInit {
   atualizarPedido() {
     const titulo = 'Olá, gostaria de pedir: \n';
     const tituloObservacoes = 'Observações: \n';
-    const prato1 = this.item1 ? 'Prato 1: ' + this.item1 + ' unidades. \n' : '';
-    const prato2 = this.item2 ? 'Prato 2: ' + this.item2 + ' unidades. \n' : '';
+    const prato1 = this.item1 ? 'Dog no Molho: ' + this.item1 + ' unidades. \n' : '';
+    const prato2 = this.item2 ? 'Dog no Molho Especial: ' + this.item2 + ' unidades. \n' : '';
     const observacoes = this.observacoes && this.observacoes !== '' ? tituloObservacoes + ' ' + this.observacoes : '';
 
     this.pedido = titulo + '\n' +
