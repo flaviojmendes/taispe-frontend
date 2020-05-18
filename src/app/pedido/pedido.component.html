@@ -1,11 +1,11 @@
 <div class="main container">
 
 <!--  Produtos   -->
-  <div class="row">
+  <div class="row linha-pedir">
 
 <!--    Prato 1    -->
     <div class="col-md-4 text-center">
-      <div class="card" style="width: 18rem;">
+      <div class="card h-100" style="width: 18rem;">
         <img src="../../assets/comida1.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Dog no Molho - R$9,99</h5>
@@ -31,7 +31,7 @@
 
 <!--   Prato 2    -->
     <div class="col-md-4 text-center">
-      <div class="card" style="width: 18rem;">
+      <div class="card h-100" style="width: 18rem;">
         <img src="../../assets/comida2.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Dog no Molho Especial - R$11,99</h5>
@@ -52,9 +52,11 @@
 
   <!--   Extras   -->
   <div class="col-md-4 text-center">
-    <div class="card" style="width: 18rem;">
+    <div class="card h-100" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">Bombom de Uva - R$4,00</h5>
+        <h4 class="card-title">Extras</h4>
+        <hr/>
+        <h5 >Bombom de Uva - R$4,00</h5>
         <div ngbDropdown class="d-inline-block">
           <button class="btn btn-warning" id="extras" ngbDropdownToggle>{{item3 ? 'Quantidade ' + item3 : 'Eu Quero!'}}</button>
           <div ngbDropdownMenu aria-labelledby="prato2">
