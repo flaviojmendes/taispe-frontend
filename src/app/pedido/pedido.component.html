@@ -59,7 +59,7 @@
         <h5 >Bombom de Uva - R$4,00</h5>
         <div ngbDropdown class="d-inline-block">
           <button class="btn btn-warning" id="extras" ngbDropdownToggle>{{item3 ? 'Quantidade ' + item3 : 'Eu Quero!'}}</button>
-          <div ngbDropdownMenu aria-labelledby="prato2">
+          <div ngbDropdownMenu aria-labelledby="extras">
             <button class="dropdown-item"
                     *ngFor="let item of qtdDisponivel"
                     (click)="item3=item; atualizarValor();">{{item}}</button>
@@ -69,6 +69,62 @@
     </div>
   </div>
 </div>
+
+  <!--  Refris    -->
+  <div class="row justify-content-center mb-4" *ngIf="this.item1">
+    <div class="col-md-6">
+      <div class="card h-100" >
+        <div class="card-body">
+          <h4 class="card-title">Escolha seus Refris!</h4>
+
+          <hr/>
+          <div class="container">
+            <div class="row mb-3 text-center">
+              <div class="col-md-6">
+                <span class="label">Coca-Cola</span>
+              </div>
+              <div class="col-md-6">
+                <div ngbDropdown class="d-inline-block">
+                  <button class="btn btn-warning" id="refrisCoca" ngbDropdownToggle>{{cocaCola ? 'Quantidade ' + cocaCola : 'Eu Quero!'}}</button>
+                  <div ngbDropdownMenu aria-labelledby="refrisCoca">
+                    <button class="dropdown-item"
+                            *ngFor="let item of refrisDisponiveis"
+                            (click)="cocaCola=item; atualizarRefrisDisponiveis();">{{item}}</button>
+                  </div>
+              </div>
+              </div>
+            </div>
+            <div class="row mb-3 text-center">
+              <div class="col-md-6">
+                <span class="label">Guaraná</span>
+              </div>
+              <div class="col-md-6">
+
+                <div ngbDropdown class="d-inline-block">
+                  <button class="btn btn-warning" id="refrisGuarana" ngbDropdownToggle>{{guarana ? 'Quantidade ' + guarana : 'Eu Quero!'}}</button>
+                  <div ngbDropdownMenu aria-labelledby="refrisGuarana">
+                    <button class="dropdown-item"
+                            *ngFor="let item of refrisDisponiveis"
+                            (click)="guarana=item; atualizarRefrisDisponiveis();">{{item}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3 text-center">
+              <div class="col-md-12">
+                <hr/>
+                <h5 [class.erro]="this.cocaCola + this.guarana > this.totalRefrisDisponivel">Você já escolheu {{totalRefris}} de {{totalRefrisDisponivel}} inclusos nos seus dogs.</h5>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 <!--  Observacoes    -->
   <div class="row justify-content-center">
@@ -92,7 +148,7 @@
   <div class="row">
 
     <div class="col-md-12 text-center linha-pedir">
-      <a class="btn btn-warning btn-block btn-lg" (click)="atualizarPedido()" target="_blank" href="https://wa.me/5561999150301?text={{pedido}}">Pedir Agora via Whatsapp!</a>
+      <a class="btn btn-warning btn-block btn-lg"  [class.disabled]="!valido" (click)="atualizarPedido()" target="_blank" href="https://wa.me/5561999150301?text={{pedido}}">Pedir Agora via Whatsapp!</a>
 
 
     </div>
