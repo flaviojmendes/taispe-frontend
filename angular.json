@@ -49,7 +49,6 @@
               "extractLicenses": true,
               "vendorChunk": true,
               "buildOptimizer": true,
-              "serviceWorker": true,
               "deleteOutputPath": true,
               "budgets": [
                 {
