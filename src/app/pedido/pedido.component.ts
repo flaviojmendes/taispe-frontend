@@ -16,63 +16,63 @@ export class PedidoComponent implements OnInit {
   refrisDisponiveis: number[] = [0];
   item1 = 0;
   item2 = 0;
-  item3 = 0;
   pedido: string;
   observacoes = '';
   total: number;
 
-  extras = {
-    1: {
+  extras: Itens = {
+    itens: [{
       label: 'Bombom de Uva',
       preco: 4,
       qtd: 0
     },
-    2: {
+    {
       label: 'Bacon',
       preco: 3,
       qtd: 0
     },
-    3: {
+    {
       label: 'Queijo',
       preco: 2,
       qtd: 0
     },
-    4: {
+    {
       label: 'Salsicha',
       preco: 2,
       qtd: 0
-    }
+    }]
   };
 
   bebidas = {
-    coca: {
+    itens: [
+    {
       label: 'Coca-Cola',
       qtd: 0
     },
-    guarana: {
+    {
       label: 'Guaraná',
       qtd: 0
     },
-    sucoAbacaxi: {
+    {
       label: 'Suco de Abacaxi',
       qtd: 0
     },
-    sucoGoiaba: {
+    {
       label: 'Suco de Goiaba',
       qtd: 0
     },
-    sucoLaranja: {
+    {
       label: 'Suco de Laranja',
       qtd: 0
     },
-    sucoMaracuja: {
+    {
       label: 'Suco de Maracujá',
       qtd: 0
     },
-    sucoUva: {
+    {
       label: 'Suco de Uva',
       qtd: 0
-    },
+    }],
   };
 
   totalRefris = 0;
@@ -97,8 +97,7 @@ export class PedidoComponent implements OnInit {
 
   atualizarRefrisDisponiveis() {
     this.totalRefris = 0;
-    const bebidaValues = Object.values(this.bebidas);
-    for (const bebida of bebidaValues) {
+    for (const bebida of this.bebidas.itens) {
       this.totalRefris += bebida.qtd;
     }
 

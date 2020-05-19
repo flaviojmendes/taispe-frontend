@@ -35,10 +35,9 @@ export class PedidoService {
     return encodeURIComponent(pedido);
   }
 
-  montarItensLista(itens: any) {
-    const values = Object.values(itens);
+  montarItensLista(itens: Itens) {
     let itensPedido = '';
-    for (const item of values) {
+    for (const item of itens.itens) {
       if (item.qtd !== 0) {
         itensPedido += item.qtd + ' - ' + item.label + '\n';
       }
@@ -47,10 +46,9 @@ export class PedidoService {
     return itensPedido;
   }
 
-  calculaExtras(extras) {
-    const values = Object.values(extras);
+  calculaExtras(extras: Itens) {
     let total = 0;
-    for (const item of values) {
+    for (const item of extras.itens) {
       total += (item.qtd * item.preco);
     }
     return total;

@@ -62,17 +62,17 @@
 
       <!-- Extras no Dog --->
         <div class="container">
-          <div *ngFor="let extra of extras | keyvalue" class="row mb-3 text-center">
+          <div *ngFor="let extra of extras.itens" class="row mb-3 text-center">
             <div class="col-md-12">
-              <span class="label">{{extra.value.label}} - {{extra.value.preco | currency:'BRL':true}}</span>
+              <span class="label">{{extra.label}} - {{extra.preco | currency:'BRL':true}}</span>
             </div>
             <div class="col-md-12">
               <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-warning" id="extra" ngbDropdownToggle>{{extra.value.qtd ? 'Quantidade ' + extra.value.qtd : 'Eu Quero!'}}</button>
+                <button class="btn btn-warning" id="extra" ngbDropdownToggle>{{extra.qtd ? 'Quantidade ' + extra.qtd : 'Eu Quero!'}}</button>
                 <div ngbDropdownMenu aria-labelledby="extra">
                   <button class="dropdown-item"
                           *ngFor="let item of extrasDisponiveis"
-                          (click)="extra.value.qtd=item; atualizarValor();">{{item}}</button>
+                          (click)="extra.qtd=item; atualizarValor();">{{item}}</button>
                 </div>
               </div>
             </div>
@@ -103,17 +103,17 @@
           <h4 class="card-title">Escolha suas Bebidas!</h4>
           <hr/>
           <div class="container">
-            <div *ngFor="let bebida of bebidas | keyvalue" class="row mb-3 text-center">
+            <div *ngFor="let bebida of bebidas.itens" class="row mb-3 text-center">
               <div class="col-md-6">
-                <span class="label">{{bebida.value.label}}</span>
+                <span class="label">{{bebida.label}}</span>
               </div>
               <div class="col-md-6">
                 <div ngbDropdown class="d-inline-block">
-                  <button class="btn btn-warning" id="refrisCoca" ngbDropdownToggle>{{bebida.value.qtd ? 'Quantidade ' + bebida.value.qtd : 'Eu Quero!'}}</button>
+                  <button class="btn btn-warning" id="refrisCoca" ngbDropdownToggle>{{bebida.qtd ? 'Quantidade ' + bebida.qtd : 'Eu Quero!'}}</button>
                   <div ngbDropdownMenu aria-labelledby="refrisCoca">
                     <button class="dropdown-item"
                             *ngFor="let item of refrisDisponiveis"
-                            (click)="bebida.value.qtd=item; atualizarRefrisDisponiveis();">{{item}}</button>
+                            (click)="bebida.qtd=item; atualizarRefrisDisponiveis();">{{item}}</button>
                   </div>
               </div>
               </div>
