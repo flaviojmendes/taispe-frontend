@@ -10,6 +10,7 @@
         <div class="card-body">
           <h5 class="card-title">Dog no Molho - R$9,99</h5>
           <p class="card-text">Molho 100% caseiro, queijo, batata palha, maionese e pão ninho.</p>
+          <hr/>
           <p class="card-text">Acompanha refri: Coca ou Guaraná.</p>
           <p class="card-text">+</p>
           <p class="card-text">Maionese Tradicional, Ketchup e Maionese de Alho</p>
@@ -36,6 +37,8 @@
         <div class="card-body">
           <h5 class="card-title">Dog no Molho Especial - R$11,99</h5>
           <p class="card-text">Molho 100% caseiro, salsicha recheada com queijo, pão ninho, mais queijo no pão, maionese caseira e bastante bacon (batata palha vai separada).</p>
+          <hr/>
+          <p class="card-text">Acompanha refri: Coca ou Guaraná.</p>
 
           <div ngbDropdown class="d-inline-block">
             <button class="btn btn-warning" id="prato2" ngbDropdownToggle>{{item2 ? 'Quantidade ' + item2 : 'Eu Quero!'}}</button>
@@ -56,65 +59,71 @@
       <div class="card-body">
         <h4 class="card-title">Extras</h4>
         <hr/>
-        <h5 >Bombom de Uva - R$4,00</h5>
-        <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-warning" id="extras" ngbDropdownToggle>{{item3 ? 'Quantidade ' + item3 : 'Eu Quero!'}}</button>
-          <div ngbDropdownMenu aria-labelledby="extras">
-            <button class="dropdown-item"
-                    *ngFor="let item of qtdDisponivel"
-                    (click)="item3=item; atualizarValor();">{{item}}</button>
+
+      <!-- Extras no Dog --->
+        <div class="container">
+          <div *ngFor="let extra of extras | keyvalue" class="row mb-3 text-center">
+            <div class="col-md-12">
+              <span class="label">{{extra.value.label}} - {{extra.value.preco | currency:'BRL':true}}</span>
+            </div>
+            <div class="col-md-12">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-warning" id="extra" ngbDropdownToggle>{{extra.value.qtd ? 'Quantidade ' + extra.value.qtd : 'Eu Quero!'}}</button>
+                <div ngbDropdownMenu aria-labelledby="extra">
+                  <button class="dropdown-item"
+                          *ngFor="let item of extrasDisponiveis"
+                          (click)="extra.value.qtd=item; atualizarValor();">{{item}}</button>
+                </div>
+              </div>
+            </div>
           </div>
+
+
+          <div class="row mb-3 text-center">
+            <div class="col-md-12">
+              <hr/>
+              <p class="observacao" [class.erro]="this.totalRefris > this.totalRefrisDisponivel">Não se preocupe, quando recebermos seu pedido, confirmaremos qual extra vai em qual dog!</p>
+            </div>
+
+          </div>
+
         </div>
+
+
       </div>
     </div>
   </div>
 </div>
 
   <!--  Refris    -->
-  <div class="row justify-content-center mb-4" *ngIf="this.item1">
+  <div class="row justify-content-center mb-4 text-center" *ngIf="this.item1">
     <div class="col-md-6">
       <div class="card h-100" >
         <div class="card-body">
-          <h4 class="card-title">Escolha seus Refris!</h4>
-
+          <h4 class="card-title">Escolha suas Bebidas!</h4>
           <hr/>
           <div class="container">
-            <div class="row mb-3 text-center">
+            <div *ngFor="let bebida of bebidas | keyvalue" class="row mb-3 text-center">
               <div class="col-md-6">
-                <span class="label">Coca-Cola</span>
+                <span class="label">{{bebida.value.label}}</span>
               </div>
               <div class="col-md-6">
                 <div ngbDropdown class="d-inline-block">
-                  <button class="btn btn-warning" id="refrisCoca" ngbDropdownToggle>{{cocaCola ? 'Quantidade ' + cocaCola : 'Eu Quero!'}}</button>
+                  <button class="btn btn-warning" id="refrisCoca" ngbDropdownToggle>{{bebida.value.qtd ? 'Quantidade ' + bebida.value.qtd : 'Eu Quero!'}}</button>
                   <div ngbDropdownMenu aria-labelledby="refrisCoca">
                     <button class="dropdown-item"
                             *ngFor="let item of refrisDisponiveis"
-                            (click)="cocaCola=item; atualizarRefrisDisponiveis();">{{item}}</button>
+                            (click)="bebida.value.qtd=item; atualizarRefrisDisponiveis();">{{item}}</button>
                   </div>
               </div>
               </div>
             </div>
-            <div class="row mb-3 text-center">
-              <div class="col-md-6">
-                <span class="label">Guaraná</span>
-              </div>
-              <div class="col-md-6">
 
-                <div ngbDropdown class="d-inline-block">
-                  <button class="btn btn-warning" id="refrisGuarana" ngbDropdownToggle>{{guarana ? 'Quantidade ' + guarana : 'Eu Quero!'}}</button>
-                  <div ngbDropdownMenu aria-labelledby="refrisGuarana">
-                    <button class="dropdown-item"
-                            *ngFor="let item of refrisDisponiveis"
-                            (click)="guarana=item; atualizarRefrisDisponiveis();">{{item}}</button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div class="row mb-3 text-center">
               <div class="col-md-12">
                 <hr/>
-                <h5 [class.erro]="this.cocaCola + this.guarana > this.totalRefrisDisponivel">Você já escolheu {{totalRefris}} de {{totalRefrisDisponivel}} inclusos nos seus dogs.</h5>
+                <h5 [class.erro]="this.totalRefris > this.totalRefrisDisponivel">Você já escolheu {{totalRefris}} de {{totalRefrisDisponivel}} inclusos nos seus dogs.</h5>
               </div>
 
             </div>
@@ -137,23 +146,29 @@
 
   </div>
 
-  <div class="row">
-
-    <div class="col-md-12 text-center linha-total">
-      <h2>Seu total será de {{total | currency}}</h2>
-    </div>
-  </div>
-
-<!--  Pedir    -->
-  <div class="row">
-
-    <div class="col-md-12 text-center linha-pedir">
-      <a class="btn btn-warning btn-block btn-lg"  [class.disabled]="!valido" (click)="atualizarPedido()" target="_blank" href="https://wa.me/5561999150301?text={{pedido}}">Pedir Agora via Whatsapp!</a>
-
-
-    </div>
-
-  </div>
 
 
 </div>
+
+
+<!--  Pedir    -->
+<footer class="rodape fixed-bottom shadow">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12 text-center linha-total">
+        <span>Seu total será de {{total | currency:'BRL':true}} (incluso taxa de entrega - Gama)</span>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-12 text-center linha-pedir">
+        <a class="btn btn-warning btn-block btn-lg"  [class.disabled]="!valido" (click)="atualizarPedido()" target="_blank" href="https://wa.me/5561999150301?text={{pedido}}">Pedir Agora via Whatsapp!</a>
+
+
+      </div>
+
+    </div>
+  </div>
+</footer>
