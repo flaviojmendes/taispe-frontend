@@ -1,9 +1,9 @@
-interface Itens {
-  itens: Item[];
+interface Items {
+  items: Item[];
 }
 
 interface Item {
   label: string;
-  qtd: number;
-  preco?: number;
+  qty: number;
+  price?: number;
 }

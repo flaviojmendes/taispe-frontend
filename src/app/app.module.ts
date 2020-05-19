@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PedidoComponent } from './pedido/pedido.component';
+import { OrderComponent } from './order/order.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LOCALE_ID } from '@angular/core';
@@ -15,7 +15,7 @@ registerLocaleData(localePt);
 @NgModule({
   declarations: [
     AppComponent,
-    PedidoComponent
+    OrderComponent
   ],
   imports: [
     BrowserModule,
