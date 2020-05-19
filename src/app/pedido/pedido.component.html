@@ -82,7 +82,7 @@
           <div class="row mb-3 text-center">
             <div class="col-md-12">
               <hr/>
-              <p class="observacao" [class.erro]="this.totalRefris > this.totalRefrisDisponivel">Não se preocupe, quando recebermos seu pedido, confirmaremos qual extra vai em qual dog!</p>
+              <p class="observacao">Não se preocupe, quando recebermos seu pedido, confirmaremos qual extra vai em qual dog!</p>
             </div>
 
           </div>
@@ -96,7 +96,7 @@
 </div>
 
   <!--  Refris    -->
-  <div class="row justify-content-center mb-4 text-center" *ngIf="this.item1">
+  <div class="row justify-content-center mb-4 text-center" *ngIf="this.totalRefrisDisponivel > 0">
     <div class="col-md-6">
       <div class="card h-100" >
         <div class="card-body">
