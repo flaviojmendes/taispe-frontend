@@ -86,7 +86,7 @@ export class OrderComponent implements OnInit {
   }
 
   updateTotal() {
-    this.total = 2;
+    this.total = 3;
     this.total += this.item1 ? (this.item1 * 9.99) : 0;
     this.total += this.item2 ? (this.item2 * 11.99) : 0;
     this.total += this.orderService.calculateExtras(this.extras);
