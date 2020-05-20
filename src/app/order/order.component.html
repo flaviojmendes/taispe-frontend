@@ -1,99 +1,54 @@
 <div class="main container-fluid">
 
-<!--  Produtos   -->
-  <div class="row line-order">
 
-<!--    Prato 1    -->
-    <div class="col-md-4 text-center mb-4">
+  <div *ngFor="let category of products.categories" class="row text-center mb-3">
+    <div class="col-md-12">
+      <h2 class="category-label">{{category.label}}</h2>
+    </div>
+    <div *ngFor="let product of category.products" class="col-md-4 text-center mb-4">
       <div class="card h-100" style="width: 18rem;">
-        <img src="../../assets/comida1.jpg" class="card-img-top" alt="...">
+        <img *ngIf="product.img" src="{{product.img}}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Dog no Molho - R$9,99</h5>
-          <p class="card-text">Molho 100% caseiro, queijo, batata palha, maionese e pão ninho.</p>
-          <hr/>
-          <p class="card-text">Acompanha refri: Coca ou Guaraná.</p>
-          <p class="card-text">+</p>
-          <p class="card-text">Maionese Tradicional, Ketchup e Maionese de Alho</p>
+          <h5 class="card-title">{{product.label}}{{product.price ? ' - ' + (product.price | currency:'BRL':true) : ''}}</h5>
+          <div *ngFor="let description of product.description">
+            <p class="card-text">{{description}}</p>
+            <hr/>
+          </div>
 
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-warning" id="prato1" ngbDropdownToggle>{{item1 ? 'Quantidade ' + item1 : 'Eu Quero!'}}</button>
-            <div ngbDropdownMenu aria-labelledby="prato1">
+          <!-- Choose Quantity Button --->
+          <div *ngIf="product.qtyAvailable" ngbDropdown class="d-inline-block">
+            <button class="btn btn-warning" id="item" ngbDropdownToggle>{{cart[product.label] ? 'Quantidade ' + cart[product.label] : 'Eu Quero!'}}</button>
+            <div ngbDropdownMenu aria-labelledby="item">
               <button class="dropdown-item"
-                      *ngFor="let item of qtyAvailable"
-                      (click)="item1=item; updateTotal();">{{item}}</button>
+                      *ngFor="let item of createArrayIndex(product.qtyAvailable)"
+                      (click)="cart[product.label]=item; updateTotal();">{{item}}</button>
             </div>
           </div>
 
 
-
-        </div>
-      </div>
-    </div>
-
-<!--   Prato 2    -->
-    <div class="col-md-4 text-center mb-4">
-      <div class="card h-100" style="width: 18rem;">
-        <img src="../../assets/comida2.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Dog no Molho Especial - R$11,99</h5>
-          <p class="card-text">Molho 100% caseiro, salsicha recheada com queijo, pão ninho, mais queijo no pão, maionese caseira e bastante bacon (batata palha vai separada).</p>
-          <hr/>
-          <p class="card-text">Acompanha refri: Coca ou Guaraná.</p>
-
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-warning" id="prato2" ngbDropdownToggle>{{item2 ? 'Quantidade ' + item2 : 'Eu Quero!'}}</button>
-            <div ngbDropdownMenu aria-labelledby="prato2">
-              <button class="dropdown-item"
-                      *ngFor="let item of qtyAvailable"
-                      (click)="item2=item; updateTotal();">{{item}}</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-  <!--   Extras   -->
-  <div class="col-md-4 text-center mb-4">
-    <div class="card h-100" style="width: 18rem;">
-      <div class="card-body">
-        <h4 class="card-title">Extras</h4>
-        <hr/>
-
-      <!-- Extras no Dog --->
-        <div class="container">
-          <div *ngFor="let extra of extras.items" class="row mb-3 text-center">
+          <!-- If has subitems show it -->
+          <div *ngFor="let subProduct of product.subProducts" class="row mb-3 text-center">
             <div class="col-md-12">
-              <span class="label">{{extra.label}} - {{extra.price | currency:'BRL':true}}</span>
+              <span class="label">{{subProduct.label}} - {{subProduct.price | currency:'BRL':true}}</span>
             </div>
             <div class="col-md-12">
               <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-warning" id="extra" ngbDropdownToggle>{{extra.qty ? 'Quantidade ' + extra.qty : 'Eu Quero!'}}</button>
-                <div ngbDropdownMenu aria-labelledby="extra">
+                <button class="btn btn-warning" id="subProduct" ngbDropdownToggle>{{cart[subProduct.label] ? 'Quantidade ' + cart[subProduct.label] : 'Eu Quero!'}}</button>
+                <div ngbDropdownMenu aria-labelledby="subProduct">
                   <button class="dropdown-item"
-                          *ngFor="let item of qtyAvailableExtras"
-                          (click)="extra.qty=item; updateTotal();">{{item}}</button>
+                          *ngFor="let item of createArrayIndex(subProduct.qtyAvailable)"
+                          (click)="cart[subProduct.label]=item; updateTotal();">{{item}}</button>
                 </div>
               </div>
             </div>
           </div>
 
 
-          <div class="row mb-3 text-center">
-            <div class="col-md-12">
-              <hr/>
-              <p class="comment">Não se preocupe, quando recebermos seu pedido, confirmaremos qual extra vai em qual dog!</p>
-            </div>
-
-          </div>
-
         </div>
-
-
       </div>
     </div>
   </div>
-</div>
+
 
   <!--  Refris    -->
   <div class="row justify-content-center mb-4 text-center" *ngIf="this.totalDrinksAvailable > 0">
@@ -115,7 +70,7 @@
                             *ngFor="let item of qtyAvailableDrinks"
                             (click)="bebida.qtd=item; atualizarRefrisDisponiveis();">{{item}}</button>
                   </div>
-              </div>
+                </div>
               </div>
             </div>
 
