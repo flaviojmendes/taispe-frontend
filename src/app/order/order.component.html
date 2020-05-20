@@ -52,8 +52,44 @@
       </div>
     </div>
 
+    <!--   Bombom Uva Peq     -->
+    <div class="col-md-4 text-center mb-4">
+      <div class="card h-100" style="width: 18rem;">
+        <img src="../../assets/comida3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Bombom de Uva 140ml  - R$4,00</h5>
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-warning" id="bombomPeq" ngbDropdownToggle>{{item3 ? 'Quantidade ' + item3 : 'Eu Quero!'}}</button>
+            <div ngbDropdownMenu aria-labelledby="bombomPeq">
+              <button class="dropdown-item"
+                      *ngFor="let item of qtyAvailable"
+                      (click)="item3=item; updateTotal();">{{item}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <!--   Extras   -->
+    <!--   Bombom Uva Gd     -->
+    <div class="col-md-4 text-center mb-4">
+      <div class="card h-100" style="width: 18rem;">
+        <img src="../../assets/comida4.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Bombom de Uva 220ml  - R$5,00</h5>
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-warning" id="bombomGd" ngbDropdownToggle>{{item4 ? 'Quantidade ' + item4 : 'Eu Quero!'}}</button>
+            <div ngbDropdownMenu aria-labelledby="bombomGd">
+              <button class="dropdown-item"
+                      *ngFor="let item of qtyAvailable"
+                      (click)="item4=item; updateTotal();">{{item}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--   Extras   -->
   <div class="col-md-4 text-center mb-4">
     <div class="card h-100" style="width: 18rem;">
       <div class="card-body">
@@ -109,11 +145,11 @@
               </div>
               <div class="col-md-6">
                 <div ngbDropdown class="d-inline-block">
-                  <button class="btn btn-warning" id="refrisCoca" ngbDropdownToggle>{{bebida.qtd ? 'Quantidade ' + bebida.qtd : 'Eu Quero!'}}</button>
+                  <button class="btn btn-warning" id="refrisCoca" ngbDropdownToggle>{{bebida.qty ? 'Quantidade ' + bebida.qty : 'Eu Quero!'}}</button>
                   <div ngbDropdownMenu aria-labelledby="refrisCoca">
                     <button class="dropdown-item"
                             *ngFor="let item of qtyAvailableDrinks"
-                            (click)="bebida.qtd=item; atualizarRefrisDisponiveis();">{{item}}</button>
+                            (click)="bebida.qty=item; updateAvailableDrinks();">{{item}}</button>
                   </div>
               </div>
               </div>

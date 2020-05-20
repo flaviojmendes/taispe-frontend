@@ -16,16 +16,14 @@ export class OrderComponent implements OnInit {
   qtyAvailableDrinks: number[] = [0];
   item1 = 0;
   item2 = 0;
+  item3 = 0;
+  item4 = 0;
   order: string;
   comments = '';
   total: number;
 
   extras: Items = {
-    items: [{
-      label: 'Bombom de Uva',
-      price: 4,
-      qty: 0
-    },
+    items: [
     {
       label: 'Bacon',
       price: 3,
@@ -47,31 +45,31 @@ export class OrderComponent implements OnInit {
     items: [
     {
       label: 'Coca-Cola',
-      qtd: 0
+      qty: 0
     },
     {
       label: 'Guaraná',
-      qtd: 0
+      qty: 0
     },
     {
       label: 'Suco de Abacaxi',
-      qtd: 0
+      qty: 0
     },
     {
       label: 'Suco de Goiaba',
-      qtd: 0
+      qty: 0
     },
     {
       label: 'Suco de Laranja',
-      qtd: 0
+      qty: 0
     },
     {
       label: 'Suco de Maracujá',
-      qtd: 0
+      qty: 0
     },
     {
       label: 'Suco de Uva',
-      qtd: 0
+      qty: 0
     }],
   };
 
@@ -89,16 +87,18 @@ export class OrderComponent implements OnInit {
     this.total = 3;
     this.total += this.item1 ? (this.item1 * 9.99) : 0;
     this.total += this.item2 ? (this.item2 * 11.99) : 0;
+    this.total += this.item3 ? (this.item2 * 4) : 0;
+    this.total += this.item4 ? (this.item2 * 5) : 0;
     this.total += this.orderService.calculateExtras(this.extras);
 
-    this.atualizarRefrisDisponiveis();
+    this.updateAvailableDrinks();
     this.validate();
   }
 
-  atualizarRefrisDisponiveis() {
+  updateAvailableDrinks() {
     this.totalDrinks = 0;
     for (const drink of this.drinks.items) {
-      this.totalDrinks += drink.qtd;
+      this.totalDrinks += drink.qty;
     }
 
     this.totalDrinksAvailable = this.item1 + this.item2;
@@ -110,11 +110,11 @@ export class OrderComponent implements OnInit {
   }
 
   updateOrder() {
-    this.order = this.orderService.buildOrder(this.item1, this.item2, this.comments, this.extras, this.drinks);
+    this.order = this.orderService.buildOrder(this.item1, this.item2, this.item3, this.item4, this.comments, this.extras, this.drinks);
   }
 
   validate() {
-    if (this.item1 === 0 && this.item2 === 0) {
+    if (this.item1 === 0 && this.item2 === 0 && this.item3 === 0 && this.item4 === 0) {
       this.valid = false;
       return;
     }

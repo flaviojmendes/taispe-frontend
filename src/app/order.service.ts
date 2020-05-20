@@ -9,12 +9,14 @@ export class OrderService {
 
   SEPARATOR = '---------------\n';
 
-  buildOrder(item1, item2, comments, extras, drinks) {
+  buildOrder(item1, item2, item3, item4, comments, extras, drinks) {
     let order = '';
 
     const title = 'Olá, gostaria de pedir: \n';
     const item1Text = item1 ? 'Dog no Molho: ' + item1 + ' unidades. \n' : '';
     const item2Text = item2 ? 'Dog no Molho Especial: ' + item2 + ' unidades. \n' : '';
+    const item3Text = item3 ? 'Bombom de Uva 140ml: ' + item3 + ' unidades. \n' : '';
+    const item4Text = item4 ? 'Bombom de Uva 220ml: ' + item4 + ' unidades. \n' : '';
 
     const drinksText = 'As bebidas serão:\n ' + this.buildListItems(drinks) + '\n';
 
@@ -26,7 +28,7 @@ export class OrderService {
 
     order = '```' +
       title + this.SEPARATOR +
-      item1Text + item2Text + this.SEPARATOR +
+      item1Text + item2Text + item3Text + item4Text + this.SEPARATOR +
       drinksText +  this.SEPARATOR +
       extrasText + this.SEPARATOR +
       commentsText +
