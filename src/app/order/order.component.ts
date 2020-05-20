@@ -87,8 +87,8 @@ export class OrderComponent implements OnInit {
     this.total = 3;
     this.total += this.item1 ? (this.item1 * 9.99) : 0;
     this.total += this.item2 ? (this.item2 * 11.99) : 0;
-    this.total += this.item3 ? (this.item2 * 4) : 0;
-    this.total += this.item4 ? (this.item2 * 5) : 0;
+    this.total += this.item3 ? (this.item3 * 4) : 0;
+    this.total += this.item4 ? (this.item4 * 5) : 0;
     this.total += this.orderService.calculateExtras(this.extras);
 
     this.updateAvailableDrinks();
