@@ -22,3 +22,4 @@ Then run it:
 $ docker run -d -p 80:80 --name mamuska mamuska
 ```
 
+You will be able to access the app through `http://localhost`

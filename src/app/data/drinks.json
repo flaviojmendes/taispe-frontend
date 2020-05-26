@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "label": "Coca-Cola",
+      "qty": 0
+    },
+    {
+      "label": "Guaraná",
+      "qty": 0
+    },
+    {
+      "label": "Suco de Abacaxi",
+      "qty": 0
+    },
+    {
+      "label": "Suco de Goiaba",
+      "qty": 0
+    },
+    {
+      "label": "Suco de Laranja",
+      "qty": 0
+    },
+    {
+      "label": "Suco de Maracujá",
+      "qty": 0
+    },
+    {
+      "label": "Suco de Uva",
+      "qty": 0
+    }]
+}

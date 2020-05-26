@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {OrderService} from '../order.service';
-
+import * as extras from '../data/extras.json';
+import * as drinks from '../data/drinks.json';
 @Component({
   selector: 'app-pedido',
   templateUrl: './order.component.html',
@@ -12,7 +13,6 @@ export class OrderComponent implements OnInit {
   }
 
   qtyAvailable: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  qtyAvailableExtras: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   qtyAvailableDrinks: number[] = [0];
   item1 = 0;
   item2 = 0;
@@ -22,56 +22,10 @@ export class OrderComponent implements OnInit {
   comments = '';
   total: number;
 
-  extras: Items = {
-    items: [
-    {
-      label: 'Bacon',
-      price: 3,
-      qty: 0
-    },
-    {
-      label: 'Queijo',
-      price: 2,
-      qty: 0
-    },
-    {
-      label: 'Salsicha',
-      price: 2,
-      qty: 0
-    }]
-  };
-
-  drinks = {
-    items: [
-    {
-      label: 'Coca-Cola',
-      qty: 0
-    },
-    {
-      label: 'Guaraná',
-      qty: 0
-    },
-    {
-      label: 'Suco de Abacaxi',
-      qty: 0
-    },
-    {
-      label: 'Suco de Goiaba',
-      qty: 0
-    },
-    {
-      label: 'Suco de Laranja',
-      qty: 0
-    },
-    {
-      label: 'Suco de Maracujá',
-      qty: 0
-    },
-    {
-      label: 'Suco de Uva',
-      qty: 0
-    }],
-  };
+  // @ts-ignore
+  extras: Items = extras.default;
+  // @ts-ignore
+  drinks = drinks.default;
 
   totalDrinks = 0;
   totalDrinksAvailable = 0;

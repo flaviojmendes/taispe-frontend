@@ -107,7 +107,7 @@
                 <button class="btn btn-warning" id="extra" ngbDropdownToggle>{{extra.qty ? 'Quantidade ' + extra.qty : 'Eu Quero!'}}</button>
                 <div ngbDropdownMenu aria-labelledby="extra">
                   <button class="dropdown-item"
-                          *ngFor="let item of qtyAvailableExtras"
+                          *ngFor="let item of qtyAvailable"
                           (click)="extra.qty=item; updateTotal();">{{item}}</button>
                 </div>
               </div>

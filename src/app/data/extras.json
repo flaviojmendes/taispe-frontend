@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "label": "Bacon",
+      "price": 3,
+      "qty": 0
+    },
+    {
+      "label": "Queijo",
+      "price": 2,
+      "qty": 0
+    },
+    {
+      "label": "Salsicha",
+      "price": 2,
+      "qty": 0
+    }]
+}
