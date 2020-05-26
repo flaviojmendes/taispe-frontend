@@ -82,6 +82,19 @@ export class OrderComponent implements OnInit {
               }
             ]
           }
+         ]
+      },
+      {
+        id: '3',
+        dependsOn: ['1', '2'],
+        label: 'Bebidas',
+        products: [
+          {
+            id: '8',
+            label: 'Coca-Cola',
+            price: 0,
+            qtyAvailable: 10
+          }
         ]
       }
     ]
