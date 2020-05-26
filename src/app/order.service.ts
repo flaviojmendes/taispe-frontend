@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Items } from './model/pedido.model';
 
 @Injectable({
   providedIn: 'root'

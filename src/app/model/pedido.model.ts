@@ -1,8 +1,8 @@
-interface Items {
+export interface Items {
   items: Item[];
 }
 
-interface Item {
+export interface Item {
   label: string;
   qty: number;
   price?: number;
