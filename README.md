@@ -1,5 +1,6 @@
-# Mamuska
 [![Build Status](https://travis-ci.org/flaviojmendes/mmk.svg?branch=master)](https://travis-ci.org/flaviojmendes/mmk)
+
+# Mamuska
 
 This project was created to support a small business. 
 
