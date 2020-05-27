@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/flaviojmendes/mmk.svg?branch=master)](https://travis-ci.org/flaviojmendes/mmk)
+[![codecov](https://codecov.io/gh/flaviojmendes/mmk/branch/master/graph/badge.svg)](https://codecov.io/gh/flaviojmendes/mmk)
 
 # Mamuska
 
