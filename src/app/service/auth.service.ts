@@ -79,7 +79,7 @@ export class AuthService {
       // Call method to log in
       client.loginWithRedirect({
         redirect_uri: `http://zap.flaviojmendes.com/my/profile`,
-        appState: { target: redirectPath }
+        appState: { target: 'http://zap.flaviojmendes.com/my/profile' }
       });
     });
   }
