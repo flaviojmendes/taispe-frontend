@@ -57,45 +57,6 @@
   </div>
 
 
-  <!--  Refris    -->
-  <div class="row justify-content-center mb-4 text-center" *ngIf="this.totalDrinksAvailable > 0">
-    <div class="col-md-6">
-      <div class="card h-100" >
-        <div class="card-body">
-          <h4 class="card-title">Escolha suas Bebidas!</h4>
-          <hr/>
-          <div class="container">
-            <div *ngFor="let bebida of drinks.items" class="row mb-3 text-center">
-              <div class="col-md-6">
-                <span class="label">{{bebida.label}}</span>
-              </div>
-              <div class="col-md-6">
-                <div ngbDropdown class="d-inline-block">
-                  <button class="btn btn-warning" id="refrisCoca" ngbDropdownToggle>{{bebida.qtd ? 'Quantidade ' + bebida.qtd : 'Eu Quero!'}}</button>
-                  <div ngbDropdownMenu aria-labelledby="refrisCoca">
-                    <button class="dropdown-item"
-                            *ngFor="let item of qtyAvailableDrinks"
-                            (click)="bebida.qtd=item; atualizarRefrisDisponiveis();">{{item}}</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="row mb-3 text-center">
-              <div class="col-md-12">
-                <hr/>
-                <h5 [class.error]="this.totalDrinks > this.totalDrinksAvailable">Você já escolheu {{totalDrinks}} de {{totalDrinksAvailable}} inclusos nos seus dogs.</h5>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
 
 <!--  Observacoes    -->
   <div class="row justify-content-center">
