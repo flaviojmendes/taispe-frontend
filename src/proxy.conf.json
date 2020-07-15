@@ -1,0 +1,11 @@
+{
+  "/api/": {
+    "target": "http://zap.flaviojmendes.com:8181",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": "true"
+  }
+}

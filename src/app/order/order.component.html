@@ -1,7 +1,14 @@
+<nav class="navbar navbar-light bg-light fixed-top shadow">
+  <a class="navbar-brand" href="#">
+    <img src="{{company?.logo}}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+    {{company?.name}}
+  </a>
+</nav>
+
 <div class="main container-fluid">
 
 
-  <div *ngFor="let category of products.categories" class="row text-center mb-3">
+  <div *ngFor="let category of categories" class="row text-center mb-3">
     <div class="col-md-12">
       <h2 class="category-label">{{category.label}}</h2>
     </div>
@@ -17,11 +24,11 @@
 
           <!-- Choose Quantity Button --->
           <div *ngIf="product.qtyAvailable" ngbDropdown class="d-inline-block">
-            <button class="btn btn-warning" id="item" ngbDropdownToggle>{{cart[product.label] ? 'Quantidade ' + cart[product.label] : 'Eu Quero!'}}</button>
+            <button class="btn btn-warning" id="item" ngbDropdownToggle>{{cart[product.label]?.quantity ? 'Quantidade ' + cart[product.label]?.quantity : 'Eu Quero!'}}</button>
             <div ngbDropdownMenu aria-labelledby="item">
               <button class="dropdown-item"
                       *ngFor="let item of createArrayIndex(product.qtyAvailable)"
-                      (click)="cart[product.label]=item; updateTotal();">{{item}}</button>
+                      (click)="updateCart(product, item); updateTotal();">{{item}}</button>
             </div>
           </div>
 
@@ -112,7 +119,7 @@
     <div class="row">
 
       <div class="col-md-12 text-center line-total">
-        <span>Seu total será de {{total | currency:'BRL':true}} (incluso taxa de entrega - Gama)</span>
+        <span>Seu total será de {{total | currency:'BRL':true}} (incluso taxa de entrega)</span>
       </div>
     </div>
 

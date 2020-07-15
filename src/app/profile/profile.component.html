@@ -1,0 +1,236 @@
+<div class="main container-fluid">
+
+  <!-- Basic Info    -->
+
+  <form>
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h2 class="section-title">Informações Básicas</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input [(ngModel)]="company.email" name="email" type="email" class="form-control" id="email" disabled>
+          </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Número do Whatsapp</label>
+          <input [(ngModel)]="company.whatsappNumber" name="whatsappNumber" type="text" class="form-control" id="whatsappNumber">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Nome do Seu Negócio</label>
+          <input [(ngModel)]="company.name" name="name" type="text" class="form-control" id="name">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Defina um Atalho para acesso</label>
+          <input [(ngModel)]="company.url" name="url" type="text" class="form-control" id="url">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="deliveryPrice">Quanto você cobra pela entrega?</label>
+          <input [(ngModel)]="company.deliveryPrice" name="deliveryPrice" type="number" class="form-control" id="deliveryPrice">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div *ngIf="company.id" class="row text-center">
+      <div class="col-md-12">
+        <h2 class="section-title">Categorias</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" class="btn btn-primary" (click)="newCategory()" data-toggle="modal" data-target="#editCategoryModal">Nova Categoria</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-light">
+          <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Ações</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let category of categories">
+            <td>{{category.label}}</td>
+            <td>
+              <button type="button" class="btn btn-sm btn-primary" (click)="setCategory(category)" data-toggle="modal" data-target="#editCategoryModal">Editar</button>
+              <button type="button" class="btn btn-sm btn-danger" (click)="setCategory(category)"  data-toggle="modal" data-target="#removeCategoryModal">Remover</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editCategoryModalLabel">Editar Categoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="text-dark" for="categoryName">Nome da Categoria</label>
+                <input [(ngModel)]="category.label" name="name" type="text" class="form-control" id="categoryName">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Produtos</h3>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary" (click)="newProduct()" data-toggle="modal" data-target="#editProductModal">Novo Produto</button>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-light">
+                <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Preço</th>
+                  <th scope="col">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let product of products">
+                  <td>{{product.label}}</td>
+                  <td>{{product.price | currency:'BRL':true}}</td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-primary" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal">Editar</button>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal">Remover</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" (click)="saveCategory()"  data-dismiss="modal">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Remove Category Modal -->
+<div class="modal fade" id="removeCategoryModal" tabindex="-1" role="dialog" aria-labelledby="removeCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="removeCategoryModalLabel">Remove Categoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              Tem certeza em remover a categoria <strong>{{category.label}}?</strong>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" (click)="deleteCategory()"  data-dismiss="modal">Remover</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Edit Product Modal -->
+<div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProductModalLabel">Editar Produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="text-dark" for="productName">Nome do Produto</label>
+                <input [(ngModel)]="product.label" name="name" type="text" class="form-control" id="productName">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="text-dark" for="productPrice">Preço</label>
+                <input [(ngModel)]="product.price" name="price" type="text" class="form-control" id="productPrice">
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="text-dark" for="productPrice">Imagem</label>
+                <img height="100" *ngIf="product.img" src="{{product.img}}" class="card-img-top" alt="...">
+                <input (change)="imgChanged($event)" name="productImage" type="file" class="form-control" id="productImage">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" (click)="saveProduct()"  data-dismiss="modal">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

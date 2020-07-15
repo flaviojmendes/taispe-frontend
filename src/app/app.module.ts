@@ -8,22 +8,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
-import { registerLocaleData } from '@angular/common';
+import {CurrencyPipe, registerLocaleData} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import { CompanyComponent } from './company/company.component';
+import { ProfileComponent } from './profile/profile.component';
+import {FormsModule} from '@angular/forms';
 
 registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
     AppComponent,
-    OrderComponent
+    OrderComponent,
+    CompanyComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
