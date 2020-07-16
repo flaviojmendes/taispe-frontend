@@ -12,6 +12,8 @@ export class CompanyComponent implements OnInit {
   constructor(public auth: AuthService) { }
 
   ngOnInit() {
+    this.auth.handleAuthCallback();
+
   }
 
 }

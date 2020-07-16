@@ -14,7 +14,7 @@ export class AuthService {
     createAuth0Client({
       domain: 'zapperson.us.auth0.com',
       client_id: '6f14aMt50o8SLp3IndysC56UXarlT5Wl',
-      redirect_uri: `http://zap.flaviojmendes.com/my/profile`
+      redirect_uri: `http://localhost:4200/auth`
     })
   ) as Observable<Auth0Client>).pipe(
     shareReplay(1), // Every subscription receives the same shared value
@@ -78,13 +78,13 @@ export class AuthService {
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
       client.loginWithRedirect({
-        redirect_uri: `http://zap.flaviojmendes.com/my/profile`,
-        appState: { target: 'http://zap.flaviojmendes.com/my/profile' }
+        redirect_uri: `http://localhost:4200/auth`,
+        appState: { target: redirectPath }
       });
     });
   }
 
-  private handleAuthCallback() {
+  public handleAuthCallback() {
     // Call when app reloads after user logs in with Auth0
     const params = window.location.search;
     if (params.includes('code=') && params.includes('state=')) {
