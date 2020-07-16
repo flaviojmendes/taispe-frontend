@@ -7,9 +7,9 @@ import {throwError} from 'rxjs';
   providedIn: 'root'
 })
 export class CompanyService {
-  companyUrl = 'http://menu.flaviojmendes.com:8181/company';
-  companyByEmailUrl = 'http://menu.flaviojmendes.com:8181/company/email/';
-  companyByUrlUrl = 'http://menu.flaviojmendes.com:8181/company/url/';
+  companyUrl = 'https://menu.flaviojmendes.com/api/company';
+  companyByEmailUrl = 'https://menu.flaviojmendes.com/api/company/email/';
+  companyByUrlUrl = 'https://menu.flaviojmendes.com/api/company/url/';
 
   constructor(private http: HttpClient) { }
 

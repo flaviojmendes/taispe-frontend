@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CategoryService {
 
-  categoriesUrl = 'http://menu.flaviojmendes.com:8181/category/';
+  categoriesUrl = 'https://menu.flaviojmendes.com/api/category/';
 
   constructor(private http: HttpClient) { }
 
