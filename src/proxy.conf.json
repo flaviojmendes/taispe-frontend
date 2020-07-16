@@ -1,6 +1,6 @@
 {
   "/api/": {
-    "target": "http://menu.flaviojmendes.com:8181",
+    "target": "https://menu.flaviojmendes.com:8181",
     "secure": false,
     "logLevel": "debug",
     "pathRewrite": {
