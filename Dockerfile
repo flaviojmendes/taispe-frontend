@@ -7,5 +7,6 @@ COPY . .
 RUN npm run build
 ### STAGE 2: Run ###
 FROM staticfloat/nginx-certbot
+ENV CERTBOT_EMAIL flaviojmendes@gmail.com
 COPY ./nginx.conf /etc/nginx/user.conf.d/
 COPY --from=build /usr/src/app/dist/mamuska /usr/share/nginx/html
