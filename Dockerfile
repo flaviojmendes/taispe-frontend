@@ -6,6 +6,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 ### STAGE 2: Run ###
-FROM nginx:1.17.1-alpine
+FROM staticfloat/nginx-certbot
 COPY ./nginx.conf /etc/nginx/user.conf.d/
 COPY --from=build /usr/src/app/dist/mamuska /usr/share/nginx/html
