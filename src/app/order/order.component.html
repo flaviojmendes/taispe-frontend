@@ -8,7 +8,7 @@
 <div class="main container-fluid">
 
 
-  <div *ngFor="let category of categories" class="row text-center mb-3">
+  <div *ngFor="let category of categories" class="row justify-content-md-center text-center mb-3">
     <div class="col-md-12">
       <h2 class="category-label">{{category.label}}</h2>
     </div>
@@ -18,7 +18,7 @@
         <div class="card-body">
           <h5 class="card-title">{{product.label}}{{product.price ? ' - ' + (product.price | currency:'BRL':true) : ''}}</h5>
           <div *ngFor="let description of product.description">
-            <p class="card-text">{{description}}</p>
+            <p class="product-description card-text">{{description}}</p>
             <hr/>
           </div>
 

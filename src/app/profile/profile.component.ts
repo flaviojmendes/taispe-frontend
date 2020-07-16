@@ -18,8 +18,9 @@ export class ProfileComponent implements OnInit {
   categories: Category[] = [{}];
   products: Product[] = [{}];
   category: Category = {};
-  product: Product = {};
-  productImage: any;
+  product: Product = {
+    description: []
+  };
 
   ngOnInit() {
     this.auth.userProfile$.subscribe(data => {
@@ -47,6 +48,9 @@ export class ProfileComponent implements OnInit {
   }
 
   setProduct(product: Product) {
+    if (!product.description) {
+      product.description = [];
+    }
     this.product = product;
   }
 
@@ -54,6 +58,7 @@ export class ProfileComponent implements OnInit {
   newProduct() {
     this.product = {
       qtyAvailable: 10,
+      description: [],
       category: {
         id: this.category.id
       }
@@ -88,6 +93,7 @@ export class ProfileComponent implements OnInit {
   }
 
   saveCategory() {
+    this.category.products = undefined;
     this.categoryService.saveCategory(this.category, this.company.id).subscribe(value => {
       this.getCategories();
     });

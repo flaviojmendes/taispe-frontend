@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { CompanyComponent } from './company/company.component';
 import { ProfileComponent } from './profile/profile.component';
 import {FormsModule} from '@angular/forms';
+import {CurrencyMaskModule} from 'ng2-currency-mask';
 
 registerLocaleData(localePt);
 
@@ -29,7 +30,8 @@ registerLocaleData(localePt);
     BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CurrencyMaskModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}, CurrencyPipe],
   bootstrap: [AppComponent]

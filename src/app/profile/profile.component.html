@@ -8,46 +8,64 @@
         <h2 class="section-title">Informações Básicas</h2>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input [(ngModel)]="company.email" name="email" type="email" class="form-control" id="email" disabled>
+    <div class="row justify-content-md-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">Seu Email é:</label>
+                    <input [(ngModel)]="company.email" name="email" type="email" class="form-control" id="email" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">Qual o Número do Whatsapp?</label>
+                    <input [(ngModel)]="company.whatsappNumber" name="whatsappNumber" type="text" class="form-control" id="whatsappNumber">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">Qual o Nome do Seu Negócio?</label>
+                    <input [(ngModel)]="company.name" name="name" type="text" class="form-control" id="name">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">Defina um Atalho para acesso:</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">menu.flaviojmendes.com/</div>
+                      </div>
+                      <input [(ngModel)]="company.url" name="url" type="text" class="form-control" id="url">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="deliveryPrice">Quanto você cobra pela entrega?</label>
+                    <input [(ngModel)]="company.deliveryPrice" name="deliveryPrice" type="text" class="form-control" id="deliveryPrice" currencyMask [options]="{ allowNegative: false, prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }" >
+                  </div>
+                </div>
+              </div>
+              <!--Save Row-->
+              <div class="row justify-content-md-center">
+                <div class="col-md-6 text-center">
+                  <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
+                </div>
+              </div>
+            </div>
           </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="email">Número do Whatsapp</label>
-          <input [(ngModel)]="company.whatsappNumber" name="whatsappNumber" type="text" class="form-control" id="whatsappNumber">
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="email">Nome do Seu Negócio</label>
-          <input [(ngModel)]="company.name" name="name" type="text" class="form-control" id="name">
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="email">Defina um Atalho para acesso</label>
-          <input [(ngModel)]="company.url" name="url" type="text" class="form-control" id="url">
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="deliveryPrice">Quanto você cobra pela entrega?</label>
-          <input [(ngModel)]="company.deliveryPrice" name="deliveryPrice" type="number" class="form-control" id="deliveryPrice">
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
-      </div>
-    </div>
+
+
 
     <!-- Categories -->
     <div *ngIf="company.id" class="row text-center">
@@ -55,30 +73,43 @@
         <h2 class="section-title">Categorias</h2>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button type="button" class="btn btn-primary" (click)="newCategory()" data-toggle="modal" data-target="#editCategoryModal">Nova Categoria</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <table class="table table-light">
-          <thead>
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Ações</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let category of categories">
-            <td>{{category.label}}</td>
-            <td>
-              <button type="button" class="btn btn-sm btn-primary" (click)="setCategory(category)" data-toggle="modal" data-target="#editCategoryModal">Editar</button>
-              <button type="button" class="btn btn-sm btn-danger" (click)="setCategory(category)"  data-toggle="modal" data-target="#removeCategoryModal">Remover</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+
+
+    <div class="row justify-content-md-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="container">
+
+              <div class="row">
+                <div class="col-md-12 text-right">
+                  <button type="button" class="btn btn-primary" (click)="newCategory()" data-toggle="modal" data-target="#editCategoryModal">Nova Categoria</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-light">
+                    <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let category of categories">
+                      <td>{{category.label}}</td>
+                      <td>
+                        <button type="button" class="btn btn-sm btn-primary" (click)="setCategory(category)" data-toggle="modal" data-target="#editCategoryModal">Editar</button>
+                        <button type="button" class="btn btn-sm btn-danger" (click)="setCategory(category)"  data-toggle="modal" data-target="#removeCategoryModal">Remover</button>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </form>
@@ -105,20 +136,20 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div *ngIf="category.id" class="row">
             <div class="col-md-12">
               <h3>Produtos</h3>
             </div>
           </div>
 
-          <div class="row">
+          <div *ngIf="category.id" class="row">
             <div class="col-md-12">
               <button type="button" class="btn btn-primary" (click)="newProduct()" data-toggle="modal" data-target="#editProductModal">Novo Produto</button>
             </div>
           </div>
 
 
-          <div class="row">
+          <div *ngIf="category.id" class="row">
             <div class="col-md-12">
               <table class="table table-light">
                 <thead>
@@ -210,7 +241,14 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label class="text-dark" for="productPrice">Preço</label>
-                <input [(ngModel)]="product.price" name="price" type="text" class="form-control" id="productPrice">
+                <input [(ngModel)]="product.price" name="price" type="text" class="form-control" id="productPrice" currencyMask [options]="{ allowNegative: false, prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }">
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="text-dark" for="productDescription">Nome do Produto</label>
+                <textarea [(ngModel)]="product.description[0]" name="productDescription" type="text" class="form-control" id="productDescription" rows="3"></textarea>
               </div>
             </div>
 
