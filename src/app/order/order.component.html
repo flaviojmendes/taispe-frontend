@@ -87,7 +87,7 @@
     <div class="row">
 
       <div class="col-md-12 text-center line-order">
-        <a class="btn btn-warning btn-block btn-lg" [class.disabled]="!valid" (click)="updateOrder()" target="_blank" href="https://wa.me/{{company.whatsappNumber}}?text={{order}}">Pedir Agora via Whatsapp!</a>
+        <a class="btn btn-warning btn-block btn-lg" [class.disabled]="!valid" (click)="updateOrder()" target="_blank" href="https://wa.me/{{company?.whatsappNumber}}?text={{order}}">Pedir Agora via Whatsapp!</a>
 
 
       </div>

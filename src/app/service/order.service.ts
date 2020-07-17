@@ -8,21 +8,20 @@ export class OrderService {
 
   constructor(private currencyPipe: CurrencyPipe) { }
 
-  SEPARATOR = '---------------\n';
+  SEPARATOR = '\n---------------\n';
 
   buildOrder(cart, comments) {
     let order = '';
 
-    const title = 'Olá, gostaria de pedir: \n';
-    const orderText = this.buildListItems(cart) + '\n';
-    const commentsTitle = 'Observações: \n';
+    const title = 'Olá, gostaria de pedir: ';
+    const orderText = this.buildListItems(cart);
+    const commentsTitle = 'Observações: ';
     const totalText = 'Total: ' + this.updateTotal(cart);
-    const commentsText = comments && comments !== '' ? commentsTitle + ' ' + comments : '';
+    const commentsText = comments && comments !== '' ? commentsTitle + '\n' + comments + this.SEPARATOR : '';
     order = '```' +
       title + this.SEPARATOR +
       orderText + this.SEPARATOR +
       commentsText +
-      this.SEPARATOR +
       totalText +
       '```';
 
