@@ -1,4 +1,5 @@
 <div class="main container-fluid">
+  <button (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</button>
 
   <!-- Basic Info    -->
 
@@ -75,7 +76,7 @@
     </div>
 
 
-    <div class="row justify-content-md-center">
+    <div *ngIf="company.id" class="row justify-content-md-center">
       <div class="col-md-8">
         <div class="card">
           <div class="card-body">
@@ -99,8 +100,8 @@
                     <tr *ngFor="let category of categories">
                       <td>{{category.label}}</td>
                       <td>
-                        <button type="button" class="btn btn-sm btn-primary" (click)="setCategory(category)" data-toggle="modal" data-target="#editCategoryModal">Editar</button>
-                        <button type="button" class="btn btn-sm btn-danger" (click)="setCategory(category)"  data-toggle="modal" data-target="#removeCategoryModal">Remover</button>
+                        <button type="button" class="btn btn-sm btn-primary action-button" (click)="setCategory(category)" data-toggle="modal" data-target="#editCategoryModal">Editar</button>
+                        <button type="button" class="btn btn-sm btn-danger action-button" (click)="setCategory(category)"  data-toggle="modal" data-target="#removeCategoryModal">Remover</button>
                       </td>
                     </tr>
                     </tbody>
@@ -164,8 +165,8 @@
                   <td>{{product.label}}</td>
                   <td>{{product.price | currency:'BRL':true}}</td>
                   <td>
-                    <button type="button" class="btn btn-sm btn-primary" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal">Editar</button>
-                    <button type="button" class="btn btn-sm btn-danger" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal">Remover</button>
+                    <button type="button" class="btn btn-sm btn-primary action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal">Editar</button>
+                    <button type="button" class="btn btn-sm btn-danger action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#removeProductModal">Remover</button>
                   </td>
                 </tr>
                 </tbody>
@@ -232,13 +233,13 @@
 
         <div class="container">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="text-dark" for="productName">Nome do Produto</label>
                 <input [(ngModel)]="product.label" name="name" type="text" class="form-control" id="productName">
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="text-dark" for="productPrice">Preço</label>
                 <input [(ngModel)]="product.price" name="price" type="text" class="form-control" id="productPrice" currencyMask [options]="{ allowNegative: false, prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }">
@@ -247,7 +248,7 @@
 
             <div class="col-md-12">
               <div class="form-group">
-                <label class="text-dark" for="productDescription">Nome do Produto</label>
+                <label class="text-dark" for="productDescription">Descrição Produto</label>
                 <textarea [(ngModel)]="product.description[0]" name="productDescription" type="text" class="form-control" id="productDescription" rows="3"></textarea>
               </div>
             </div>
@@ -255,9 +256,9 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label class="text-dark" for="productPrice">Imagem</label>
-                <img height="100" *ngIf="product.img" src="{{product.img}}" class="card-img-top" alt="...">
                 <input (change)="imgChanged($event)" name="productImage" type="file" class="form-control" id="productImage">
               </div>
+              <img *ngIf="product.img" src="{{product.img}}" class="img-thumbnail" alt="...">
             </div>
 
           </div>
@@ -268,6 +269,37 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         <button type="button" class="btn btn-primary" (click)="saveProduct()"  data-dismiss="modal">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Remove Product Modal -->
+<div class="modal fade" id="removeProductModal" tabindex="-1" role="dialog" aria-labelledby="removeProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="removeProductModalLabel">Remover Produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              Tem certeza em remover o produto <strong>{{product.label}}?</strong>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" (click)="deleteProduct()"  data-dismiss="modal">Remover</button>
       </div>
     </div>
   </div>

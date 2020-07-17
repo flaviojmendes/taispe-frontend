@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
 
   save() {
     this.companyService.saveCompany(this.company).subscribe( data => {
-        console.log(data);
+        this.company = data;
       },
       err => {
         console.log(err.message);
