@@ -1,5 +1,4 @@
 <div class="main container-fluid">
-  <button (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</button>
 
   <!-- Basic Info    -->
 
@@ -53,6 +52,7 @@
                     <input [(ngModel)]="company.deliveryPrice" name="deliveryPrice" type="text" class="form-control" id="deliveryPrice" currencyMask [options]="{ allowNegative: false, prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }" >
                   </div>
                 </div>
+
               </div>
               <!--Save Row-->
               <div class="row justify-content-md-center">
