@@ -1,18 +1,43 @@
-<nav class="navbar navbar-light bg-light fixed-top shadow">
-  <a class="navbar-brand" href="#">
-    <img src="{{company?.logo}}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-    {{company?.name}}
-  </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
+  <a class="navbar-brand" href="#">{{company?.name}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown" >
+    <ul class="navbar-nav d-lg-none">
+      <li *ngFor="let category of categories" class="nav-item">
+        <a class="nav-link" routerLink="." fragment="header{{category.id}}" data-toggle="collapse"  [attr.data-target]="'.navbar-collapse.show'">{{category.label}}</a>
+      </li>
+    </ul>
+  </div>
+
+
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Categorias
+      </a>
+      <div class="categories-menu dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a *ngFor="let category of categories" class="nav-link" routerLink="." fragment="header{{category.id}}">{{category.label}}</a>
+      </div>
+    </li>
+  </ul>
+
 </nav>
+
 
 <div class="main container-fluid">
 
 
   <div *ngFor="let category of categories" class="row justify-content-md-center text-center mb-3">
     <div class="col-md-12">
-      <h2 class="category-label">{{category.label}}</h2>
+      <a class="" data-toggle="collapse" href="#col{{category.id}}"  [attr.aria-expanded]="true"  [attr.aria-controls]="category.id">
+        <h2 id="header{{category.id}}" class="category-label">{{category.label}}</h2>
+      </a>
     </div>
-    <div *ngFor="let product of category.products" class="col-md-4 text-center mb-4">
+    <div *ngFor="let product of category.products" id="col{{category.id}}" class="collapse show col-md-4 text-center mb-4">
       <div class="card h-100" style="width: 18rem;">
         <img *ngIf="product.img" src="{{product.img}}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -31,26 +56,6 @@
                       (click)="updateCart(product, item); updateTotal();">{{item}}</button>
             </div>
           </div>
-
-
-          <!-- If has subitems show it -->
-          <div *ngFor="let subProduct of product.subProducts" class="row mb-3 text-center">
-            <div class="col-md-12">
-              <span class="label">{{subProduct.label}} - {{subProduct.price | currency:'BRL':true}}</span>
-            </div>
-            <div class="col-md-12">
-              <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-warning" id="subProduct" ngbDropdownToggle>{{cart[subProduct.label] ? 'Quantidade ' + cart[subProduct.label] : 'Eu Quero!'}}</button>
-                <div ngbDropdownMenu aria-labelledby="subProduct">
-                  <button class="dropdown-item"
-                          *ngFor="let item of createArrayIndex(subProduct.qtyAvailable)"
-                          (click)="cart[subProduct.label]=item; updateTotal();">{{item}}</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
         </div>
       </div>
     </div>
@@ -80,7 +85,7 @@
     <div class="row">
 
       <div class="col-md-12 text-center line-total">
-        <span>Seu total será de {{total | currency:'BRL':true}} (incluso taxa de entrega)</span>
+        <span>Seu total será de {{total | currency:'BRL':true}} {{company?.deliveryPrice ? '(incluso taxa de entrega)' : ''}}</span>
       </div>
     </div>
 

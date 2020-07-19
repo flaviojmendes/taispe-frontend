@@ -16,7 +16,7 @@ export class OrderComponent implements OnInit {
               private companyService: CompanyService) {}
   order: string;
   comments = '';
-  total: number;
+  total = 0;
   cart = {};
   company: Company;
 
@@ -42,17 +42,12 @@ export class OrderComponent implements OnInit {
   }
 
   updateTotal() {
-    this.total = this.company ? this.company.deliveryPrice : 0;
+    this.total = this.company && this.company.deliveryPrice ? this.company.deliveryPrice : 0;
 
     for (const key of Object.keys(this.cart)) {
       this.total += this.cart[key].quantity * this.cart[key].price;
     }
 
-
-    // this.total += this.orderService.calculateExtras(this.extras);
-
-    // this.atualizarRefrisDisponiveis();
-    // this.validate();
   }
 
   updateCart(product: Product, qty: number) {
@@ -67,15 +62,6 @@ export class OrderComponent implements OnInit {
   }
 
   validate() {
-    // if (this.item1 === 0 && this.item2 === 0) {
-    //   this.valid = false;
-    //   return;
-    // }
-    //
-    // if (this.totalDrinks > this.totalDrinksAvailable) {
-    //   this.valid = false;
-    //   return;
-    // }
     this.valid = true;
   }
 
