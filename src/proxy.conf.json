@@ -1,6 +1,6 @@
 {
   "/api/": {
-    "target": "https://menu.flaviojmendes.com:8181",
+    "target": "https://menu.taispe.com:8181",
     "secure": false,
     "logLevel": "debug",
     "pathRewrite": {

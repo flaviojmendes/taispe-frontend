@@ -14,7 +14,7 @@ export class AuthService {
     createAuth0Client({
       domain: 'zapperson.us.auth0.com',
       client_id: '6f14aMt50o8SLp3IndysC56UXarlT5Wl',
-      redirect_uri: `https://menu.flaviojmendes.com/auth`
+      redirect_uri: `https://menu.taispe.com/auth`
       // redirect_uri: `http://localhost:4200/auth`
     })
   ) as Observable<Auth0Client>).pipe(
@@ -80,7 +80,7 @@ export class AuthService {
       // Call method to log in
       client.loginWithRedirect({
         // redirect_uri: `http://localhost:4200/auth`,
-        redirect_uri: `https://menu.flaviojmendes.com/auth`,
+        redirect_uri: `https://menu.taispe.com/auth`,
         appState: { target: redirectPath }
       });
     });
