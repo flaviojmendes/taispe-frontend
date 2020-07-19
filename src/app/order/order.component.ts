@@ -20,7 +20,7 @@ export class OrderComponent implements OnInit {
   cart = {};
   company: Company;
 
-  categories: Category[];
+  categories: Category[] = [];
   valid = false;
 
   ngOnInit() {
@@ -29,16 +29,26 @@ export class OrderComponent implements OnInit {
       this.companyService.getCompanyByUrl(params.url).subscribe(company => {
         this.company = company;
 
-        this.categoryService.getCategories(company.id).subscribe( data => this.categories = data,
-          err => {
-            console.log(err.message);
-          });
+        this.getCategoryByPage(0);
 
         this.updateTotal();
         this.validate();
       });
     });
 
+  }
+
+  getCategoryByPage(page: number) {
+    return this.categoryService.getCategoryByPage(this.company.id, page).subscribe( data => {
+      if (!data) {
+        return;
+      }
+      this.categories.push(data);
+      this.getCategoryByPage(page + 1);
+      },
+      err => {
+        console.log(err.message);
+      });;
   }
 
   updateTotal() {

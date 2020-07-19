@@ -14,6 +14,11 @@ export class CategoryService {
     return this.http.get<Category[]>(this.categoriesUrl + companyId);
   }
 
+
+  getCategoryByPage(companyId: string, page: number) {
+    return this.http.get<Category>(this.categoriesUrl + companyId + '/' + page);
+  }
+
   saveCategory(category: Category, companyId: string) {
     return this.http.post<Category[]>(this.categoriesUrl + companyId, category);
   }
