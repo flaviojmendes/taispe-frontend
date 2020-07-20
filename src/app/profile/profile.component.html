@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="email">Qual o Número do Whatsapp?</label>
+                    <label for="email">Qual o Número do Whatsapp? (55 + SEU DDD + SEU NUMERO)</label>
                     <input [(ngModel)]="company.whatsappNumber" name="whatsappNumber" type="text" class="form-control" id="whatsappNumber">
                   </div>
                 </div>
@@ -51,6 +51,13 @@
                     <label for="deliveryPrice">Quanto você cobra pela entrega?</label>
                     <input [(ngModel)]="company.deliveryPrice" name="deliveryPrice" type="text" class="form-control" id="deliveryPrice" currencyMask [options]="{ allowNegative: false, prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }" >
                   </div>
+                </div>
+
+                <div *ngIf="company.url" class="col-md-12 text-center align-middle">
+                  <hr class="my-4">
+                  <span  class="align-middle">Seu link para acesso é <a target="_blank" href="https://menu.taispe.com/{{company.url}}">https://menu.taispe.com/{{company.url}}</a></span>
+                  <hr class="my-4">
+
                 </div>
 
               </div>

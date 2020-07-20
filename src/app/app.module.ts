@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {FormsModule} from '@angular/forms';
 import {CurrencyMaskModule} from 'ng2-currency-mask';
 import {TokenInterceptor} from './auth/token.interceptor';
+import { MainComponent } from './main/main.component';
 
 registerLocaleData(localePt);
 
@@ -23,7 +24,8 @@ registerLocaleData(localePt);
     AppComponent,
     OrderComponent,
     CompanyComponent,
-    ProfileComponent
+    ProfileComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

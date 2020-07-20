@@ -8,8 +8,8 @@ import {throwError} from 'rxjs';
 })
 export class CompanyService {
   companyUrl = 'https://menu.taispe.com:8181/company';
-  companyByEmailUrl = 'https://menu.taispe.com:8181/company/email/';
-  companyByUrlUrl = 'https://menu.taispe.com:8181/company/url/';
+  companyByEmailUrl = 'https://menu.taispe.com:8181/company/email';
+  companyByUrlUrl = 'https://menu.taispe.com:8181/company/url';
 
   constructor(private http: HttpClient) { }
 
