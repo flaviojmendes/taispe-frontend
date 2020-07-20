@@ -4,6 +4,8 @@ import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { from, of, Observable, BehaviorSubject, combineLatest, throwError } from 'rxjs';
 import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import {Cookie} from 'ng2-cookies/ng2-cookies';
+import {Md5} from 'ts-md5/dist/md5';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +45,7 @@ export class AuthService {
     // Set up local auth streams if user is already authenticated
     this.localAuthSetup();
     // Handle redirect from Auth0 login
-    this.handleAuthCallback();
+    // this.handleAuthCallback();
   }
 
   // When calling, options can be passed if desired
@@ -86,9 +88,16 @@ export class AuthService {
     });
   }
 
+  async getToken(client: any) {
+    const claims = await client.getIdTokenClaims();
+    const idToken = claims.__raw;
+    return idToken;
+  }
+
   public handleAuthCallback() {
     // Call when app reloads after user logs in with Auth0
     const params = window.location.search;
+
     if (params.includes('code=') && params.includes('state=')) {
       let targetRoute: string; // Path to redirect to after login processsed
       const authComplete$ = this.handleRedirectCallback$.pipe(
@@ -105,10 +114,14 @@ export class AuthService {
           ]);
         })
       );
+
+
       // Subscribe to authentication completion observable
       // Response will be an array of user and login status
       authComplete$.subscribe(([user, loggedIn]) => {
         // Redirect to target route after callback processing
+        Cookie.set('token',  Md5.hashStr(user.email) as string);
+        Cookie.set('user',  user.email as string);
         this.router.navigate([targetRoute]);
       });
     }
@@ -120,9 +133,14 @@ export class AuthService {
       // Call method to log out
       client.logout({
         client_id: '6f14aMt50o8SLp3IndysC56UXarlT5Wl',
-        returnTo: `${window.location.origin}`
+        returnTo: `https://menu.taispe.com/auth`
       });
     });
   }
 
+  hasAuthentication() {
+    const token = Cookie.get('token');
+    const user = Cookie.get('user');
+    return token && user;
+  }
 }

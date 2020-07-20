@@ -23,6 +23,11 @@ export class ProfileComponent implements OnInit {
   };
 
   ngOnInit() {
+
+    if (!this.isAuthenticated()) {
+      this.auth.login('/my/profile');
+    }
+
     this.auth.userProfile$.subscribe(data => {
       this.companyService.getCompanyByEmail(data.email).subscribe(value => {
         if (value) {
@@ -33,6 +38,10 @@ export class ProfileComponent implements OnInit {
         }
       });
     });
+  }
+
+  isAuthenticated() {
+    return this.auth.hasAuthentication();
   }
 
   getCategories() {
@@ -64,7 +73,6 @@ export class ProfileComponent implements OnInit {
       }
     };
   }
-
 
   save() {
     this.companyService.saveCompany(this.company).subscribe( data => {
@@ -115,12 +123,56 @@ export class ProfileComponent implements OnInit {
     const files: FileList = event.target.files;
     if (files.length > 0) {
       const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
-      reader.onload = () => {
-        this.product.img = typeof reader.result === 'string' ? reader.result : undefined;
-      };
 
+      this.resizeImage(files[0], 500, 500).then(blob => {
 
+        reader.readAsDataURL(blob);
+        reader.onload = () => {
+          this.product.img = typeof reader.result === 'string' ? reader.result : undefined;
+        };
+
+      }, err => {
+        console.error('Photo error', err);
+      });
     }
   }
+
+  resizeImage(file: File, maxWidth: number, maxHeight: number): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.src = URL.createObjectURL(file);
+      image.onload = () => {
+        const width = image.width;
+        const height = image.height;
+
+        if (width <= maxWidth && height <= maxHeight) {
+          resolve(file);
+        }
+
+        let newWidth;
+        let newHeight;
+
+        if (width > height) {
+          newHeight = height * (maxWidth / width);
+          newWidth = maxWidth;
+        } else {
+          newWidth = width * (maxHeight / height);
+          newHeight = maxHeight;
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = newWidth;
+        canvas.height = newHeight;
+
+        const context = canvas.getContext('2d');
+
+        context.drawImage(image, 0, 0, newWidth, newHeight);
+
+        canvas.toBlob(resolve, file.type);
+      };
+      image.onerror = reject;
+    });
+  }
+
+
 }
