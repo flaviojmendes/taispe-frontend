@@ -22,6 +22,7 @@ export class OrderComponent implements OnInit {
 
   categories: Category[] = [];
   valid = false;
+  loading = true;
 
   ngOnInit() {
 
@@ -41,6 +42,7 @@ export class OrderComponent implements OnInit {
   getCategoryByPage(page: number) {
     return this.categoryService.getCategoryByPage(this.company.id, page).subscribe( data => {
       if (!data) {
+        this.loading = false;
         return;
       }
       this.categories.push(data);

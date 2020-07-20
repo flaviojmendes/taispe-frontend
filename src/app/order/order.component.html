@@ -37,8 +37,8 @@
         <h2 id="header{{category.id}}" class="category-label">{{category.label}}</h2>
       </a>
     </div>
-    <div *ngFor="let product of category.products" id="col{{category.id}}" class="collapse show col-md-4 text-center mb-4">
-      <div class="card h-100" style="width: 18rem;">
+    <div *ngFor="let product of category.products" id="col{{category.id}}" class="collapse show col-lg-3 col-md-6 text-center mb-4">
+      <div class="card h-100" style="width: 80%;">
         <img *ngIf="product.img" src="{{product.img}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{product.label}}{{product.price ? ' - ' + (product.price | currency:'BRL':true) : ''}}</h5>
@@ -57,6 +57,13 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading" class="row">
+    <div class="col-md-12 text-center">
+      <div class="spinner-border text-warning" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
     </div>
   </div>
