@@ -3,6 +3,7 @@ import { AuthService } from '../service/auth.service';
 import {CompanyService} from '../service/company.service';
 import {CategoryService} from '../service/category.service';
 import {ProductService} from '../service/product.service';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,13 @@ export class ProfileComponent implements OnInit {
 
   constructor(public auth: AuthService, public companyService: CompanyService,
               public categoryService: CategoryService, public productService: ProductService) { }
+
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
+
+  saving = false;
+
+  invalidFields: any = {};
 
   company: Company = {};
   categories: Category[] = [{}];
@@ -75,11 +83,21 @@ export class ProfileComponent implements OnInit {
   }
 
   save() {
+    this.saving = true;
+
+    if (!this.validate()) {
+      this.saving = false;
+      return;
+    }
+
     this.companyService.saveCompany(this.company).subscribe( data => {
         this.company = data;
+        this.saving = false;
+        this.invalidFields = {};
       },
       err => {
-        console.log(err.message);
+        this.invalidFields.duplicatedUrl = true;
+        this.saving = false;
       });
   }
 
@@ -175,4 +193,28 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  private validate() {
+    let valid = true;
+
+    if (!this.company.url) {
+      this.invalidFields.url = true;
+      valid = false;
+    }
+
+    if (!this.company.name) {
+      this.invalidFields.name = true;
+      valid = false;
+    }
+
+    if (!this.company.whatsappNumber) {
+      this.invalidFields.whatsappNumber = true;
+      valid = false;
+    }
+
+    if (valid) {
+      this.invalidFields = {};
+    }
+
+    return valid;
+  }
 }

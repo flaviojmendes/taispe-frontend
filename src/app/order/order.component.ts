@@ -3,6 +3,7 @@ import {OrderService} from '../service/order.service';
 import {CategoryService} from '../service/category.service';
 import {CompanyService} from '../service/company.service';
 import {ActivatedRoute} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-pedido',
@@ -25,6 +26,8 @@ export class OrderComponent implements OnInit {
   loading = true;
 
   ngOnInit() {
+
+    console.log(environment.production);
 
     this.route.params.subscribe(params => {
       this.companyService.getCompanyByUrl(params.url).subscribe(company => {

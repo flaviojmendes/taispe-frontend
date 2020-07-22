@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
-  <a class="navbar-brand" href="#">{{company?.name}}</a>
+  <span class="navbar-brand">{{company?.name}}</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -14,16 +14,16 @@
   </div>
 
 
-<!--  <ul class="navbar-nav mr-auto d-lg-block ">-->
-<!--    <li class="nav-item dropdown ">-->
-<!--      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--        Categorias-->
-<!--      </a>-->
-<!--      <div class="categories-menu dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">-->
-<!--        <a *ngFor="let category of categories" class="nav-link" routerLink="." fragment="header{{category.id}}">{{category.label}}</a>-->
-<!--      </div>-->
-<!--    </li>-->
-<!--  </ul>-->
+  <ul class="navbar-nav mr-auto d-none d-lg-block ">
+    <li class="nav-item dropdown ">
+      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Categorias
+      </a>
+      <div class="categories-menu dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a *ngFor="let category of categories" class="nav-link" routerLink="." fragment="header{{category.id}}">{{category.label}}</a>
+      </div>
+    </li>
+  </ul>
 
 </nav>
 

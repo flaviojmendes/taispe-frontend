@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  productsUrl = 'https://menu.taispe.com:8181/product/';
+  productsUrl = environment.backendUrl + '/product/';
 
   constructor(private http: HttpClient) { }
 

@@ -1,4 +1,16 @@
-<header>
-  <button (click)="auth.login()" *ngIf="!auth.loggedIn">Log In</button>
-  <button (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</button>
-</header>
+<div class="container">
+  <div class="row text-center mt-5">
+    <div class="col-sm-12 text-center">
+        <div class="spinner-grow text-warning m-2" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning m-2" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning m-2" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+  </div>
+
+</div>

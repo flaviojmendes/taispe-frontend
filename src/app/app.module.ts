@@ -16,6 +16,7 @@ import {FormsModule} from '@angular/forms';
 import {CurrencyMaskModule} from 'ng2-currency-mask';
 import {TokenInterceptor} from './auth/token.interceptor';
 import { MainComponent } from './main/main.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 registerLocaleData(localePt);
 
@@ -34,7 +35,8 @@ registerLocaleData(localePt);
     NgbModule,
     HttpClientModule,
     FormsModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    FontAwesomeModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'},
     CurrencyPipe,

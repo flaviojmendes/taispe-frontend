@@ -6,6 +6,7 @@ import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import {Cookie} from 'ng2-cookies/ng2-cookies';
 import {Md5} from 'ts-md5/dist/md5';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,7 @@ export class AuthService {
     createAuth0Client({
       domain: 'zapperson.us.auth0.com',
       client_id: '6f14aMt50o8SLp3IndysC56UXarlT5Wl',
-      redirect_uri: `https://menu.taispe.com/auth`
-      // redirect_uri: `http://localhost:4200/auth`
+      redirect_uri: environment.authUrl
     })
   ) as Observable<Auth0Client>).pipe(
     shareReplay(1), // Every subscription receives the same shared value
@@ -81,8 +81,7 @@ export class AuthService {
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
       client.loginWithRedirect({
-        // redirect_uri: `http://localhost:4200/auth`,
-        redirect_uri: `https://menu.taispe.com/auth`,
+        redirect_uri: environment.authUrl,
         appState: { target: redirectPath }
       });
     });
@@ -133,7 +132,7 @@ export class AuthService {
       // Call method to log out
       client.logout({
         client_id: '6f14aMt50o8SLp3IndysC56UXarlT5Wl',
-        returnTo: `https://menu.taispe.com/auth`
+        returnTo: environment.authUrl
       });
     });
   }

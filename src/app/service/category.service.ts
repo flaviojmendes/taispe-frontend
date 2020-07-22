@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  categoriesUrl = 'https://menu.taispe.com:8181/category/';
+  categoriesUrl = environment.backendUrl + '/category/';
 
   constructor(private http: HttpClient) { }
 

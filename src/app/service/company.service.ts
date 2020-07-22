@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
-  companyUrl = 'https://menu.taispe.com:8181/company';
-  companyByEmailUrl = 'https://menu.taispe.com:8181/company/email';
-  companyByUrlUrl = 'https://menu.taispe.com:8181/company/url';
+  companyUrl = environment.backendUrl + '/company';
+  companyByEmailUrl = environment.backendUrl + '/company/email';
+  companyByUrlUrl = environment.backendUrl + '/company/url';
 
   constructor(private http: HttpClient) { }
 

@@ -1,4 +1,4 @@
-<div class="main container-fluid">
+<div class="container-fluid">
 
   <!-- Basic Info    -->
 
@@ -23,14 +23,20 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="email">Qual o Número do Whatsapp? (55 + SEU DDD + SEU NUMERO)</label>
-                    <input [(ngModel)]="company.whatsappNumber" name="whatsappNumber" type="text" class="form-control" id="whatsappNumber">
+                    <input [(ngModel)]="company.whatsappNumber" name="whatsappNumber" type="text" class="form-control" id="whatsappNumber" [class.is-invalid]="invalidFields.whatsappNumber">
+                    <div class="invalid-feedback">
+                      Por favor informe seu número de Whatsapp.
+                    </div>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="email">Qual o Nome do Seu Negócio?</label>
-                    <input [(ngModel)]="company.name" name="name" type="text" class="form-control" id="name">
+                    <input [(ngModel)]="company.name" name="name" type="text" class="form-control" id="name" [class.is-invalid]="invalidFields.name">
+                    <div class="invalid-feedback">
+                      Por favor informe o nome do seu negócio.
+                    </div>
                   </div>
                 </div>
 
@@ -41,7 +47,10 @@
                       <div class="input-group-prepend">
                         <div class="input-group-text">menu.taispe.com/</div>
                       </div>
-                      <input [(ngModel)]="company.url" name="url" type="text" class="form-control" id="url">
+                      <input [(ngModel)]="company.url" name="url" type="text" class="form-control" id="url" [class.is-invalid]="invalidFields.url || invalidFields.duplicatedUrl">
+                      <div class="invalid-feedback">
+                        {{invalidFields.url ? 'Por favor informe o seu atalho para acesso.' : 'Desculpe, mas esse atalho já está sendo usado.'}}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -64,7 +73,12 @@
               <!--Save Row-->
               <div class="row justify-content-md-center">
                 <div class="col-md-6 text-center">
-                  <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
+                  <button type="button" class="btn btn-warning" (click)="save()" [disabled]="saving">
+                    <span *ngIf="!saving">Salvar</span>
+                    <div *ngIf="saving" class="spinner-border text-dark" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -89,12 +103,24 @@
           <div class="card-body">
             <div class="container">
 
-              <div class="row">
-                <div class="col-md-12 text-right">
-                  <button type="button" class="btn btn-primary" (click)="newCategory()" data-toggle="modal" data-target="#editCategoryModal">Nova Categoria</button>
+              <div *ngIf="categories.length === 0" class="row text-center">
+                <div class="col-xs-12">
+                  <p class="lead">
+                    Hmm.. 🤔 Parece que você ainda não possui nenhuma categoria. Clique em
+                    <button type="button" class="btn btn-warning" (click)="newCategory()" data-toggle="modal" data-target="#editCategoryModal">Nova Categoria</button>
+                     para adicionar sua primeira!
+                  </p>
                 </div>
               </div>
-              <div class="row">
+
+
+              <div *ngIf="categories.length > 0" class="row">
+                <div class="col-md-12 text-right">
+                  <button type="button" class="btn btn-warning" (click)="newCategory()" data-toggle="modal" data-target="#editCategoryModal">Nova Categoria</button>
+                </div>
+              </div>
+
+              <div *ngIf="categories.length > 0" class="row">
                 <div class="col-md-12">
                   <table class="table table-light">
                     <thead>
@@ -107,8 +133,8 @@
                     <tr *ngFor="let category of categories">
                       <td>{{category.label}}</td>
                       <td>
-                        <button type="button" class="btn btn-sm btn-primary action-button" (click)="setCategory(category)" data-toggle="modal" data-target="#editCategoryModal">Editar</button>
-                        <button type="button" class="btn btn-sm btn-danger action-button" (click)="setCategory(category)"  data-toggle="modal" data-target="#removeCategoryModal">Remover</button>
+                        <button type="button" class="btn btn-sm btn-warning action-button" (click)="setCategory(category)" data-toggle="modal" data-target="#editCategoryModal"><fa-icon [icon]="faEdit"></fa-icon> Editar</button>
+                        <button type="button" class="btn btn-sm btn-danger action-button" (click)="setCategory(category)"  data-toggle="modal" data-target="#removeCategoryModal"><fa-icon [icon]="faTrashAlt"></fa-icon> Remover</button>
                       </td>
                     </tr>
                     </tbody>
@@ -169,14 +195,24 @@
             </div>
           </div>
 
-          <div *ngIf="category.id" class="row">
-            <div class="col-md-12">
-              <button type="button" class="btn btn-primary" (click)="newProduct()" data-toggle="modal" data-target="#editProductModal">Novo Produto</button>
+          <div *ngIf="category.id && products.length === 0" class="row text-center">
+            <div class="col-xs-12">
+              <p class="lead">
+                Essa categoria ainda não possui produtos cadastrados. Clique em
+                <button type="button" class="btn btn-warning" (click)="newProduct()" data-toggle="modal" data-target="#editProductModal">Novo Produto</button>
+                para adicionar!
+              </p>
             </div>
           </div>
 
 
-          <div *ngIf="category.id" class="row">
+          <div *ngIf="category.id && products.length > 0" class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-warning" (click)="newProduct()" data-toggle="modal" data-target="#editProductModal">Novo Produto</button>
+            </div>
+          </div>
+
+          <div *ngIf="category.id && products.length > 0" class="row">
             <div class="col-md-12">
               <table class="table table-light">
                 <thead>
@@ -191,8 +227,8 @@
                   <td>{{product.label}}</td>
                   <td>{{product.price | currency:'BRL':true}}</td>
                   <td>
-                    <button type="button" class="btn btn-sm btn-primary action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal">Editar</button>
-                    <button type="button" class="btn btn-sm btn-danger action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#removeProductModal">Remover</button>
+                    <button type="button" class="btn btn-sm btn-warning action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal"><fa-icon [icon]="faEdit"></fa-icon> Editar</button>
+                    <button type="button" class="btn btn-sm btn-danger action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#removeProductModal"><fa-icon [icon]="faTrashAlt"></fa-icon> Remover</button>
                   </td>
                 </tr>
                 </tbody>
@@ -206,7 +242,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" (click)="saveCategory()"  data-dismiss="modal">Salvar</button>
+        <button type="button" class="btn btn-warning" (click)="saveCategory()"  data-dismiss="modal">Salvar</button>
       </div>
     </div>
   </div>
@@ -238,7 +274,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" (click)="deleteCategory()"  data-dismiss="modal">Remover</button>
+        <button type="button" class="btn btn-warning" (click)="deleteCategory()"  data-dismiss="modal">Remover</button>
       </div>
     </div>
   </div>
@@ -294,7 +330,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" (click)="saveProduct()"  data-dismiss="modal">Salvar</button>
+        <button type="button" class="btn btn-warning" (click)="saveProduct()"  data-dismiss="modal">Salvar</button>
       </div>
     </div>
   </div>
@@ -325,7 +361,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" (click)="deleteProduct()"  data-dismiss="modal">Remover</button>
+        <button type="button" class="btn btn-warning" (click)="deleteProduct()"  data-dismiss="modal">Remover</button>
       </div>
     </div>
   </div>
