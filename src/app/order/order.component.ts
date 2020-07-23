@@ -73,7 +73,7 @@ export class OrderComponent implements OnInit {
   }
 
   updateOrder() {
-    this.order = this.orderService.buildOrder(this.cart, this.comments);
+    this.order = this.orderService.buildOrder(this.cart, this.comments, this.company.deliveryPrice);
   }
 
   validate() {

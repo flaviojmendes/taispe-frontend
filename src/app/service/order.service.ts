@@ -10,13 +10,13 @@ export class OrderService {
 
   SEPARATOR = '\n---------------\n';
 
-  buildOrder(cart, comments) {
+  buildOrder(cart, comments, deliveryPrice) {
     let order = '';
 
     const title = 'Olá, gostaria de pedir: ';
     const orderText = this.buildListItems(cart);
     const commentsTitle = 'Observações: ';
-    const totalText = 'Total: ' + this.updateTotal(cart);
+    const totalText = 'Total: ' + this.updateTotal(cart, deliveryPrice);
     const commentsText = comments && comments !== '' ? commentsTitle + '\n' + comments + this.SEPARATOR : '';
     order = '```' +
       title + this.SEPARATOR +
@@ -39,8 +39,8 @@ export class OrderService {
     return orderItems;
   }
 
-  updateTotal(cart: any) {
-    let total = 2;
+  updateTotal(cart: any, deliveryPrice: number) {
+    let total = deliveryPrice ? deliveryPrice : 0;
 
     for (const key of Object.keys(cart)) {
       total += cart[key].quantity * cart[key].price;

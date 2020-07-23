@@ -47,7 +47,7 @@
                       <div class="input-group-prepend">
                         <div class="input-group-text">menu.taispe.com/</div>
                       </div>
-                      <input [(ngModel)]="company.url" name="url" type="text" class="form-control" id="url" [class.is-invalid]="invalidFields.url || invalidFields.duplicatedUrl">
+                      <input appUrl [(ngModel)]="company.url" name="url" type="text" class="form-control" id="url" [class.is-invalid]="invalidFields.url || invalidFields.duplicatedUrl">
                       <div class="invalid-feedback">
                         {{invalidFields.url ? 'Por favor informe o seu atalho para acesso.' : 'Desculpe, mas esse atalho já está sendo usado.'}}
                       </div>

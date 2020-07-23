@@ -17,6 +17,7 @@ import {CurrencyMaskModule} from 'ng2-currency-mask';
 import {TokenInterceptor} from './auth/token.interceptor';
 import { MainComponent } from './main/main.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { UrlDirective } from './url.directive';
 
 registerLocaleData(localePt);
 
@@ -26,7 +27,8 @@ registerLocaleData(localePt);
     OrderComponent,
     CompanyComponent,
     ProfileComponent,
-    MainComponent
+    MainComponent,
+    UrlDirective
   ],
   imports: [
     BrowserModule,
