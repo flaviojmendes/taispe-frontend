@@ -62,6 +62,17 @@
                   </div>
                 </div>
 
+                <div class="col-md-6" style="margin: auto;">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="nameRequired" [checked]="company.requireName" (change)="company.requireName = !company.requireName">
+                    <label class="custom-control-label" for="nameRequired">Exigir Nome do Cliente</label>
+                  </div>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input"  id="addressRequired" [checked]="company.requireAddress" (change)="company.requireAddress = !company.requireAddress">
+                    <label class="custom-control-label" for="addressRequired">Exigir Endereço do Cliente</label>
+                  </div>
+                </div>
+
                 <div *ngIf="company.url" class="col-md-12 text-center align-middle">
                   <hr class="my-4">
                   <span  class="align-middle">Seu link para acesso é <a target="_blank" href="https://menu.taispe.com/{{company.url}}">https://menu.taispe.com/{{company.url}}</a></span>

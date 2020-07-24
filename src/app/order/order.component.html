@@ -39,22 +39,36 @@
     </div>
     <div *ngFor="let product of category.products" id="col{{category.id}}" class="collapse show col-lg-3 col-md-6 text-center mb-4">
       <div class="card h-100" style="width: 80%;">
-        <img *ngIf="product.img" src="{{product.img}}" class="card-img-top" alt="...">
+        <img *ngIf="product.img" src="{{product.img}}" class="card-img-top d-none d-md-block" alt="...">
         <div class="card-body">
-          <h5 class="card-title">{{product.label}}{{product.price ? ' - ' + (product.price | currency:'BRL':true) : ''}}</h5>
-          <div *ngFor="let description of product.description">
-            <p class="product-description card-text">{{description}}</p>
-            <hr/>
-          </div>
+          <!-- Product Info -->
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-8 col-md-12">
+                <div class="col-12">
+                  <h5 class="card-title">{{product.label}}{{product.price ? ' - ' + (product.price | currency:'BRL':true) : ''}}</h5>
+                  <div *ngFor="let description of product.description">
+                    <p class="product-description card-text">{{description}}</p>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <!-- Choose Quantity Button --->
+                  <div *ngIf="product.qtyAvailable" ngbDropdown class="qty-available d-inline-block">
+                    <button class="btn btn-warning" id="item" ngbDropdownToggle>{{cart[product.label]?.quantity ? 'Quantidade ' + cart[product.label]?.quantity : 'Eu Quero!'}}</button>
+                    <div ngbDropdownMenu aria-labelledby="item">
+                      <button class="dropdown-item"
+                              *ngFor="let item of createArrayIndex(product.qtyAvailable)"
+                              (click)="updateCart(product, item); updateTotal();">{{item}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 d-block d-md-none" style="margin: auto;">
+                <img *ngIf="product.img" src="{{product.img}}"  class="card-img-top side-img" alt="...">
+              </div>
 
-          <!-- Choose Quantity Button --->
-          <div *ngIf="product.qtyAvailable" ngbDropdown class="d-inline-block">
-            <button class="btn btn-warning" id="item" ngbDropdownToggle>{{cart[product.label]?.quantity ? 'Quantidade ' + cart[product.label]?.quantity : 'Eu Quero!'}}</button>
-            <div ngbDropdownMenu aria-labelledby="item">
-              <button class="dropdown-item"
-                      *ngFor="let item of createArrayIndex(product.qtyAvailable)"
-                      (click)="updateCart(product, item); updateTotal();">{{item}}</button>
             </div>
+
           </div>
         </div>
       </div>
@@ -71,6 +85,7 @@
 
 
 <!--  Observacoes    -->
+  <hr class="my-4">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="form-group text-center">
@@ -78,7 +93,38 @@
         <textarea [value]="comments" (input)="comments = $event.target.value;" class="form-control" id="observacoes" rows="3"></textarea>
       </div>
     </div>
+  </div>
 
+  <!-- Optional Fields -->
+  <hr class="my-4">
+  <div *ngIf="company?.requireName || company?.requireAddress" class="row justify-content-center text-center">
+    <div class="col-md-12">
+        <h2 id="personalData" class="category-label">Dados Pessoais</h2>
+    </div>
+  </div>
+
+  <div *ngIf="company?.requireName" class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="form-group text-center">
+        <label class="out-label" for="name">Nome</label>
+        <input [(ngModel)]="name" name="name" type="text" class="form-control" id="name" [class.is-invalid]="invalidFields.name">
+        <div class="invalid-feedback">
+          Por favor informe o seu Nome.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="company?.requireAddress" class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="form-group text-center">
+        <label class="out-label" for="address">Endereço</label>
+        <textarea [value]="address" (input)="address = $event.target.value;" class="form-control" id="address" rows="3" [class.is-invalid]="invalidFields.address"></textarea>
+        <div class="invalid-feedback">
+          Por favor informe o seu Endereço.
+        </div>
+      </div>
+    </div>
   </div>
 
 
@@ -99,7 +145,7 @@
     <div class="row">
 
       <div class="col-md-12 text-center line-order">
-        <a class="btn btn-warning btn-block btn-lg" [class.disabled]="!valid" (click)="updateOrder()" target="_blank" href="https://wa.me/{{company?.whatsappNumber}}?text={{order}}">Pedir Agora via Whatsapp!</a>
+        <a class="btn btn-warning btn-block btn-lg" (click)="updateOrder()" target="_blank" href="https://wa.me/{{company?.whatsappNumber}}?text={{order}}">Pedir Agora via Whatsapp!</a>
 
 
       </div>

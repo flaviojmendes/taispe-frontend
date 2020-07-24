@@ -10,7 +10,7 @@ export class OrderService {
 
   SEPARATOR = '\n---------------\n';
 
-  buildOrder(cart, comments, deliveryPrice) {
+  buildOrder(cart, comments, deliveryPrice, name, address) {
     let order = '';
 
     const title = 'Olá, gostaria de pedir: ';
@@ -18,10 +18,17 @@ export class OrderService {
     const commentsTitle = 'Observações: ';
     const totalText = 'Total: ' + this.updateTotal(cart, deliveryPrice);
     const commentsText = comments && comments !== '' ? commentsTitle + '\n' + comments + this.SEPARATOR : '';
+
+    const nameTitle = 'Nome: ';
+    const nameText = name && name !== '' ? nameTitle + '\n' + name + this.SEPARATOR : '';
+    const addressTitle = 'Endereço: ';
+    const addressText = address && address !== '' ? addressTitle + '\n' + address + this.SEPARATOR : '';
     order = '```' +
       title + this.SEPARATOR +
       orderText + this.SEPARATOR +
       commentsText +
+      nameText +
+      addressText +
       totalText +
       '```';
 

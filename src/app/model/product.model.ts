@@ -8,6 +8,8 @@ interface Company {
  primaryColor?: string;
  backgroundColor?: string;
  deliveryPrice?: number;
+ requireAddress?: boolean;
+ requireName?: boolean;
 }
 
 interface Category {

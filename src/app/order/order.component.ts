@@ -17,12 +17,16 @@ export class OrderComponent implements OnInit {
               private companyService: CompanyService) {}
   order: string;
   comments = '';
+  name = '';
+  address = '';
+
+  invalidFields: any = {};
+
   total = 0;
   cart = {};
   company: Company;
 
   categories: Category[] = [];
-  valid = false;
   loading = true;
 
   ngOnInit() {
@@ -36,7 +40,6 @@ export class OrderComponent implements OnInit {
         this.getCategoryByPage(0);
 
         this.updateTotal();
-        this.validate();
       });
     });
 
@@ -73,11 +76,36 @@ export class OrderComponent implements OnInit {
   }
 
   updateOrder() {
-    this.order = this.orderService.buildOrder(this.cart, this.comments, this.company.deliveryPrice);
+    const valid = this.validate();
+    this.order = this.orderService.buildOrder(this.cart, this.comments, this.company.deliveryPrice, this.name, this.address);
+    if (!valid) {
+      document.querySelector('#personalData').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return valid;
   }
 
   validate() {
-    this.valid = true;
+    let isValid = true;
+
+    if (this.company.requireName) {
+      if ((!this.name || this.name === '')) {
+        this.invalidFields.name = true;
+        isValid = false;
+      }
+    }
+
+    if (this.company.requireAddress) {
+      if ((!this.address || this.address === '')) {
+        this.invalidFields.address = true;
+        isValid = false;
+      }
+    }
+
+    if (isValid) {
+      this.invalidFields = {};
+    }
+
+    return isValid;
   }
 
   createArrayIndex(qtyAvailable: number) {
