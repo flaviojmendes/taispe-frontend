@@ -15,7 +15,9 @@ export class OrderComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private orderService: OrderService, private categoryService: CategoryService,
               private companyService: CompanyService) {}
+
   order: string;
+
   comments = '';
   name = '';
   address = '';
@@ -27,7 +29,10 @@ export class OrderComponent implements OnInit {
   company: Company;
 
   categories: Category[] = [];
+
   loading = true;
+  companyLoadingStatus = 'LOADING';
+  productsLoadingStatus = 'LOADING';
 
   ngOnInit() {
 
@@ -36,11 +41,11 @@ export class OrderComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.companyService.getCompanyByUrl(params.url).subscribe(company => {
         this.company = company;
-
+        this.companyLoadingStatus = 'OK';
         this.getCategoryByPage(0);
-
         this.updateTotal();
-      });
+      },
+          error => this.companyLoadingStatus = 'ERROR');
     });
 
   }
@@ -49,14 +54,15 @@ export class OrderComponent implements OnInit {
     return this.categoryService.getCategoryByPage(this.company.id, page).subscribe( data => {
       if (!data) {
         this.loading = false;
+        this.productsLoadingStatus = 'OK';
         return;
       }
       this.categories.push(data);
       this.getCategoryByPage(page + 1);
       },
       err => {
-        console.log(err.message);
-      });;
+        this.productsLoadingStatus = 'ERROR';
+      });
   }
 
   updateTotal() {
@@ -69,7 +75,8 @@ export class OrderComponent implements OnInit {
   }
 
   updateCart(product: Product, qty: number) {
-    this.cart[product.label] = {
+    this.cart[product.id] = {
+      label: product.label,
       price: product.price,
       quantity: qty
     };

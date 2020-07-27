@@ -39,7 +39,7 @@ export class OrderService {
     let orderItems = '';
     for (const key of Object.keys(cart)) {
       if (cart[key].quantity !== 0) {
-        orderItems += cart[key].quantity + ' - ' + key + '\n';
+        orderItems += cart[key].quantity + ' - ' + cart[key].label + '\n';
       }
     }
 
