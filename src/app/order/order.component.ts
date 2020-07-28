@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {OrderService} from '../service/order.service';
 import {CategoryService} from '../service/category.service';
 import {CompanyService} from '../service/company.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../environments/environment';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pedido',
@@ -14,7 +15,8 @@ export class OrderComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private orderService: OrderService, private categoryService: CategoryService,
-              private companyService: CompanyService) {}
+              private companyService: CompanyService, private sanitizer: DomSanitizer,
+              private elementRef: ElementRef) {}
 
   order: string;
 
@@ -43,6 +45,7 @@ export class OrderComponent implements OnInit {
         this.company = company;
         this.companyLoadingStatus = 'OK';
         this.getCategoryByPage(0);
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = company.backgroundColor;
         this.updateTotal();
       },
           error => this.companyLoadingStatus = 'ERROR');
@@ -117,5 +120,25 @@ export class OrderComponent implements OnInit {
 
   createArrayIndex(qtyAvailable: number) {
     return Array.from(Array((qtyAvailable + 1)).keys());
+  }
+
+
+  getButtonColor() {
+   return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${this.company.primaryColor || '#fec059'} !important; color: ${this.company.backgroundColor} !important;`);
+  }
+
+  getBgFontColor() {
+    return this.sanitizer.bypassSecurityTrustStyle(`color: ${this.company.backgroundColor} !important`);
+  }
+
+  getBgColor() {
+    return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${this.company.backgroundColor} !important`);
+  }
+
+  getPrimaryBgColor() {
+    return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${this.company.primaryColor} !important`);
+  }
+  getPrimaryColor() {
+    return this.sanitizer.bypassSecurityTrustStyle(`color: ${this.company.primaryColor} !important`);
   }
 }

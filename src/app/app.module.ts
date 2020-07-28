@@ -18,6 +18,7 @@ import {TokenInterceptor} from './auth/token.interceptor';
 import { MainComponent } from './main/main.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { UrlDirective } from './url.directive';
+import {ColorPickerModule} from 'ngx-color-picker';
 
 registerLocaleData(localePt);
 
@@ -38,7 +39,8 @@ registerLocaleData(localePt);
     HttpClientModule,
     FormsModule,
     CurrencyMaskModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ColorPickerModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'},
     CurrencyPipe,

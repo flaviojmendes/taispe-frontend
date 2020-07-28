@@ -3,24 +3,22 @@
   <!-- Basic Info    -->
 
   <form>
-    <div class="row text-center">
-      <div class="col-md-12">
-        <h2 class="section-title">Informações Básicas</h2>
-      </div>
-    </div>
     <div class="row justify-content-md-center">
       <div class="col-md-8">
-        <div class="card">
+        <div class="card mt-4">
           <div class="card-body">
             <div class="container">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12 text-center">
+                  <h2 class="">Informações Básicas</h2>
+                </div>
+                <div class="col-md-4">
                   <div class="form-group">
                     <label for="email">Seu Email é:</label>
                     <input [(ngModel)]="company.email" name="email" type="email" class="form-control" id="email" disabled>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
                   <div class="form-group">
                     <label for="email">Qual o Número do Whatsapp? (55 + SEU DDD + SEU NUMERO)</label>
                     <input [(ngModel)]="company.whatsappNumber" name="whatsappNumber" type="text" class="form-control" id="whatsappNumber" [class.is-invalid]="invalidFields.whatsappNumber">
@@ -72,6 +70,26 @@
                     <label class="custom-control-label" for="addressRequired">Exigir Endereço do Cliente</label>
                   </div>
                 </div>
+
+                <div class="col-md-12 text-center">
+                  <h3>Personalize</h3>
+                </div>
+
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="primaryColor">Cor Primária:</label>
+                    <input id="primaryColor" class="form-control" [cpPosition]="'bottom'" [colorPicker]="company?.primaryColor" [style.background]="company?.primaryColor" (colorPickerChange)="company.primaryColor=$event"/>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="backgroundColor">Cor de Fundo:</label>
+                    <input id="backgroundColor" class="form-control" [cpPosition]="'bottom'" [colorPicker]="company?.backgroundColor" [style.background]="company?.backgroundColor" (colorPickerChange)="company.backgroundColor=$event"/>
+                  </div>
+                </div>
+
 
                 <div *ngIf="company.url" class="col-md-12 text-center align-middle">
                   <hr class="my-4">

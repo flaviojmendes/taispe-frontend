@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
-  <span class="navbar-brand">{{company?.name}}</span>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" [attr.style]="getPrimaryBgColor()">
+  <span class="navbar-brand"  [attr.style]="getBgFontColor()">{{company?.name}}</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown" >
     <ul class="navbar-nav d-lg-none">
       <li *ngFor="let category of categories" class="nav-item">
-        <a class="nav-link" routerLink="." fragment="header{{category.id}}" data-toggle="collapse"  [attr.data-target]="'.navbar-collapse.show'">{{category.label}}</a>
+        <a class="nav-link" [attr.style]="getBgFontColor()" routerLink="." fragment="header{{category.id}}" data-toggle="collapse"  [attr.data-target]="'.navbar-collapse.show'">{{category.label}}</a>
       </li>
     </ul>
   </div>
@@ -16,7 +16,7 @@
 
   <ul class="navbar-nav mr-auto d-none d-lg-block ">
     <li class="nav-item dropdown ">
-      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="nav-link dropdown-toggle" [attr.style]="getBgFontColor()" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Categorias
       </a>
       <div class="categories-menu dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -33,7 +33,7 @@
   <div *ngFor="let category of categories" class="row justify-content-md-center text-center mb-3">
     <div class="col-md-12">
       <a class="" data-toggle="collapse" href="#col{{category.id}}"  [attr.aria-expanded]="true"  [attr.aria-controls]="category.id">
-        <h2 id="header{{category.id}}" class="category-label">{{category.label}}</h2>
+        <h2 id="header{{category.id}}" class="category-label" [attr.style]="getPrimaryColor()">{{category.label}}</h2>
       </a>
     </div>
     <div *ngFor="let product of category.products" id="col{{category.id}}"  class="collapse show col-lg-2 col-md-6 text-center mb-4">
@@ -55,7 +55,7 @@
                 <div class="col-12">
                   <!-- Choose Quantity Button --->
                   <div *ngIf="product.qtyAvailable" ngbDropdown class="qty-available d-inline-block">
-                    <button class="btn btn-warning" id="item" ngbDropdownToggle>{{cart[product.id]?.quantity ? 'Quantidade ' + cart[product.id]?.quantity : 'Eu Quero!'}}</button>
+                    <button class="btn" id="item" ngbDropdownToggle [attr.style]="getButtonColor()">{{cart[product.id]?.quantity ? 'Quantidade ' + cart[product.id]?.quantity : 'Eu Quero!'}}</button>
                     <div ngbDropdownMenu aria-labelledby="item">
                       <button class="dropdown-item"
                               *ngFor="let item of createArrayIndex(product.qtyAvailable)"
@@ -90,7 +90,7 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="form-group text-center">
-        <label class="out-label" for="observacoes">Observações</label>
+        <label class="out-label" [attr.style]="getPrimaryColor()" for="observacoes">Observações</label>
         <textarea [value]="comments" (input)="comments = $event.target.value;" class="form-control" id="observacoes" rows="3"></textarea>
       </div>
     </div>
@@ -100,14 +100,14 @@
   <hr class="my-4">
   <div *ngIf="company?.requireName || company?.requireAddress" class="row justify-content-center text-center">
     <div class="col-md-12">
-        <h2 id="personalData" class="category-label">Dados Pessoais</h2>
+        <h2 id="personalData" [attr.style]="getPrimaryColor()" class="category-label">Dados Pessoais</h2>
     </div>
   </div>
 
   <div *ngIf="company?.requireName" class="row justify-content-center">
     <div class="col-md-6">
       <div class="form-group text-center">
-        <label class="out-label" for="name">Nome</label>
+        <label class="out-label" for="name" [attr.style]="getPrimaryColor()">Nome</label>
         <input [(ngModel)]="name" name="name" type="text" class="form-control" id="name" [class.is-invalid]="invalidFields.name">
         <div class="invalid-feedback">
           Por favor informe o seu Nome.
@@ -119,7 +119,7 @@
   <div *ngIf="company?.requireAddress" class="row justify-content-center">
     <div class="col-md-6">
       <div class="form-group text-center">
-        <label class="out-label" for="address">Endereço</label>
+        <label class="out-label" for="address" [attr.style]="getPrimaryColor()">Endereço</label>
         <textarea [value]="address" (input)="address = $event.target.value;" class="form-control" id="address" rows="3" [class.is-invalid]="invalidFields.address"></textarea>
         <div class="invalid-feedback">
           Por favor informe o seu Endereço.
@@ -134,19 +134,19 @@
 
 
 <!--  Pedir    -->
-<footer class="footer fixed-bottom shadow">
+<footer class="footer fixed-bottom " [attr.style]="getBgColor()">
   <div class="container container-footer">
     <div class="row">
 
       <div class="col-md-12 text-center line-total">
-        <span>Seu total será de {{total | currency:'BRL':true}} {{company?.deliveryPrice ? '(incluso taxa de entrega)' : ''}}</span>
+        <span [attr.style]="getPrimaryColor()">Seu total será de {{total | currency:'BRL':true}} {{company?.deliveryPrice ? '(incluso taxa de entrega)' : ''}}</span>
       </div>
     </div>
 
     <div class="row">
 
       <div class="col-md-12 text-center line-order">
-        <a class="btn btn-warning btn-block btn-lg" (click)="updateOrder()" target="_blank" href="https://wa.me/{{company?.whatsappNumber}}?text={{order}}">Pedir Agora via Whatsapp!</a>
+        <a class="btn  btn-block btn-lg" [attr.style]="getButtonColor()" (click)="updateOrder()" target="_blank" href="https://wa.me/{{company?.whatsappNumber}}?text={{order}}">Pedir Agora via Whatsapp!</a>
 
 
       </div>
