@@ -124,21 +124,31 @@ export class OrderComponent implements OnInit {
 
 
   getButtonColor() {
-   return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${this.company.primaryColor || '#fec059'} !important; color: ${this.company.backgroundColor} !important;`);
+    if (this.company) {
+      return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${this.company.primaryColor || '#fec059'} !important; color: ${this.company.backgroundColor} !important;`);
+    }
   }
 
   getBgFontColor() {
-    return this.sanitizer.bypassSecurityTrustStyle(`color: ${this.company.backgroundColor} !important`);
+    if (this.company) {
+      return this.sanitizer.bypassSecurityTrustStyle(`color: ${this.company.backgroundColor} !important`);
+    }
   }
 
   getBgColor() {
-    return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${this.company.backgroundColor} !important`);
+    if (this.company) {
+      return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${this.company.backgroundColor} !important`);
+    }
   }
 
   getPrimaryBgColor() {
-    return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${this.company.primaryColor} !important`);
+    if (this.company) {
+      return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${this.company.primaryColor} !important`);
+    }
   }
   getPrimaryColor() {
-    return this.sanitizer.bypassSecurityTrustStyle(`color: ${this.company.primaryColor} !important`);
+    if (this.company) {
+      return this.sanitizer.bypassSecurityTrustStyle(`color: ${this.company.primaryColor} !important`);
+    }
   }
 }
