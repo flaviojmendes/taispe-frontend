@@ -1,0 +1,11 @@
+{
+  "/api/": {
+    "target": "https://menu.taispe.com:8181",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": "true"
+  }
+}

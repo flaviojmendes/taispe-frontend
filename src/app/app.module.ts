@@ -8,22 +8,47 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
-import { registerLocaleData } from '@angular/common';
+import {CurrencyPipe, registerLocaleData} from '@angular/common';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { CompanyComponent } from './company/company.component';
+import { ProfileComponent } from './profile/profile.component';
+import {FormsModule} from '@angular/forms';
+import {CurrencyMaskModule} from 'ng2-currency-mask';
+import {TokenInterceptor} from './auth/token.interceptor';
+import { MainComponent } from './main/main.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { UrlDirective } from './url.directive';
+import {ColorPickerModule} from 'ngx-color-picker';
 
 registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
     AppComponent,
-    OrderComponent
+    OrderComponent,
+    CompanyComponent,
+    ProfileComponent,
+    MainComponent,
+    UrlDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    FormsModule,
+    CurrencyMaskModule,
+    FontAwesomeModule,
+    ColorPickerModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'},
+    CurrencyPipe,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

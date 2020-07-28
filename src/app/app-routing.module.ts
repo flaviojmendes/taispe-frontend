@@ -1,14 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {OrderComponent} from './order/order.component';
+import { AuthGuard } from './guard/auth.guard';
+import {ProfileComponent} from './profile/profile.component';
+import {CompanyComponent} from './company/company.component';
+import {MainComponent} from './main/main.component';
 
 
 const routes: Routes = [
-  { path: '', component: OrderComponent }
+  { path: 'my/profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'auth', component: CompanyComponent },
+  { path: '', component: MainComponent },
+  { path: ':url', component: OrderComponent },
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { anchorScrolling: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
