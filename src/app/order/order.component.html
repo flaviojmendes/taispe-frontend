@@ -43,18 +43,16 @@
 
         <div class="card-body">
           <!-- Product Info -->
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-8 col-md-12">
-                <div class="col-12">
+          <div class="container h-100">
+            <div class="row justify-content-center h-100">
+              <div class="col-8 col-md-12 d-flex flex-column">
+                <div class="col-12 d-flex flex-column">
                   <h5 class="card-title">{{product.label}}{{product.price ? ' - ' + (product.price | currency:'BRL':true) : ''}}</h5>
                   <div *ngFor="let description of product.description">
                     <p class="product-description card-text">{{description}}</p>
                   </div>
-                </div>
-                <div class="col-12">
                   <!-- Choose Quantity Button --->
-                  <div *ngIf="product.qtyAvailable" ngbDropdown class="qty-available d-inline-block">
+                  <div *ngIf="product.qtyAvailable" ngbDropdown class="qty-available d-inline-block mt-auto">
                     <button class="btn" id="item" ngbDropdownToggle [attr.style]="getButtonColor()">{{cart[product.id]?.quantity ? 'Quantidade ' + cart[product.id]?.quantity : 'Eu Quero!'}}</button>
                     <div ngbDropdownMenu aria-labelledby="item">
                       <button class="dropdown-item"

@@ -10,6 +10,7 @@ interface Company {
  deliveryPrice?: number;
  requireAddress?: boolean;
  requireName?: boolean;
+ description?: string;
 }
 
 interface Category {

@@ -71,6 +71,13 @@
                   </div>
                 </div>
 
+<!--                <div class="col-md-12">-->
+<!--                  <div class="form-group text-center">-->
+<!--                    <label class="out-label" for="description">Uma breve descrição do seu negócio:</label>-->
+<!--                    <textarea [value]="company.description" (input)="company.description = $event.target.value;" class="form-control" id="description" rows="3"></textarea>-->
+<!--                  </div>-->
+<!--                </div>-->
+
                 <div class="col-md-12 text-center">
                   <h3>Personalize</h3>
                 </div>
@@ -119,19 +126,15 @@
 
 
     <!-- Categories -->
-    <div *ngIf="company.id" class="row text-center">
-      <div class="col-md-12">
-        <h2 class="section-title">Categorias</h2>
-      </div>
-    </div>
-
 
     <div *ngIf="company.id" class="row justify-content-md-center">
       <div class="col-md-8">
-        <div class="card">
+        <div class="card mt-4">
           <div class="card-body">
             <div class="container">
-
+              <div class="col-md-12 text-center">
+                <h2>Categorias</h2>
+              </div>
               <div *ngIf="categories.length === 0" class="row text-center">
                 <div class="col-xs-12">
                   <p class="lead">
