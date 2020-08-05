@@ -159,6 +159,7 @@
                     <tr>
                       <th scope="col">Nome</th>
                       <th scope="col">Ações</th>
+                      <th scope="col">Ordem</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -167,6 +168,10 @@
                       <td>
                         <button type="button" class="btn btn-sm btn-warning action-button" (click)="setCategory(category)" data-toggle="modal" data-target="#editCategoryModal"><fa-icon [icon]="faEdit"></fa-icon> Editar</button>
                         <button type="button" class="btn btn-sm btn-danger action-button" (click)="setCategory(category)"  data-toggle="modal" data-target="#removeCategoryModal"><fa-icon [icon]="faTrashAlt"></fa-icon> Remover</button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-sm btn-info action-button" (click)="setCategoryOrderUp(category)"><fa-icon [icon]="faAngleUp"></fa-icon></button>
+                        <button type="button" class="btn btn-sm btn-info action-button" (click)="setCategoryOrderDown(category)"><fa-icon [icon]="faAngleDown"></fa-icon></button>
                       </td>
                     </tr>
                     </tbody>
@@ -252,6 +257,7 @@
                   <th scope="col">Nome</th>
                   <th scope="col">Preço</th>
                   <th scope="col">Ações</th>
+                  <th scope="col">Ordem</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -259,8 +265,12 @@
                   <td>{{product.label}}</td>
                   <td>{{product.price | currency:'BRL':true}}</td>
                   <td>
-                    <button type="button" class="btn btn-sm btn-warning action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal"><fa-icon [icon]="faEdit"></fa-icon> Editar</button>
-                    <button type="button" class="btn btn-sm btn-danger action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#removeProductModal"><fa-icon [icon]="faTrashAlt"></fa-icon> Remover</button>
+                    <button type="button" class="btn btn-sm btn-warning action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal"><fa-icon [icon]="faEdit"></fa-icon><span class="d-none d-lg-block"> Editar</span></button>
+                    <button type="button" class="btn btn-sm btn-danger action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#removeProductModal"><fa-icon [icon]="faTrashAlt"></fa-icon><span class="d-none d-lg-block"> Remover</span></button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-info action-button" (click)="setProductOrderUp(product)"><fa-icon [icon]="faAngleUp"></fa-icon></button>
+                    <button type="button" class="btn btn-sm btn-info action-button" (click)="setProductOrderDown(product)"><fa-icon [icon]="faAngleDown"></fa-icon></button>
                   </td>
                 </tr>
                 </tbody>

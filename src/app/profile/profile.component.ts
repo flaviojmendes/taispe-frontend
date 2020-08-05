@@ -3,7 +3,7 @@ import { AuthService } from '../service/auth.service';
 import {CompanyService} from '../service/company.service';
 import {CategoryService} from '../service/category.service';
 import {ProductService} from '../service/product.service';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +17,8 @@ export class ProfileComponent implements OnInit {
 
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
+  faAngleUp = faAngleUp;
+  faAngleDown = faAngleDown;
 
   saving = false;
 
@@ -216,5 +218,29 @@ export class ProfileComponent implements OnInit {
     }
 
     return valid;
+  }
+
+  setCategoryOrderUp(category: Category) {
+    this.categoryService.reorderCategoryUp(category, this.company.id).subscribe(value => {
+      this.getCategories();
+    });
+  }
+
+  setCategoryOrderDown(category: Category) {
+    this.categoryService.reorderCategoryDown(category, this.company.id).subscribe(value => {
+      this.getCategories();
+    });
+  }
+
+  setProductOrderUp(product: Product) {
+    this.productService.reorderProductUp(product, this.category.id).subscribe(value => {
+      this.getProducts(this.category.id);
+    });
+  }
+
+  setProductOrderDown(product: Product) {
+    this.productService.reorderProductDown(product, this.category.id).subscribe(value => {
+      this.getProducts(this.category.id);
+    });
   }
 }

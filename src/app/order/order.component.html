@@ -32,11 +32,10 @@
 
   <div *ngFor="let category of categories" class="row justify-content-md-center text-center mb-3">
     <div class="col-md-12">
-      <a class="" data-toggle="collapse" href="#col{{category.id}}"  [attr.aria-expanded]="true"  [attr.aria-controls]="category.id">
-        <h2 id="header{{category.id}}" class="category-label" [attr.style]="getPrimaryColor()">{{category.label}}</h2>
-      </a>
+       <h2 id="header{{category.id}}" class="category-label" [attr.style]="getPrimaryColor()">{{category.label}}</h2>
+
     </div>
-    <div *ngFor="let product of category.products" id="col{{category.id}}"  class="collapse show col-lg-2 col-md-6 text-center mb-4">
+    <div *ngFor="let product of category.products" id="col{{category.id}}"  class="col-lg-2 col-md-6 text-center mb-4">
       <div class="card h-100" style="width:  95%;">
 
         <img *ngIf="product.img" src="{{product.img}}" class="card-img-top product-image d-none d-md-block" alt="...">

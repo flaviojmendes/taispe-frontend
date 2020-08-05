@@ -8,6 +8,8 @@ import {environment} from '../../environments/environment';
 export class CategoryService {
 
   categoriesUrl = environment.backendUrl + '/category/';
+  categorieUpUrl = environment.backendUrl + '/category/up/';
+  categorieDownUrl = environment.backendUrl + '/category/down/';
 
   constructor(private http: HttpClient) { }
 
@@ -27,5 +29,13 @@ export class CategoryService {
   deleteCategory(category: Category, companyId: string) {
     return this.http.request('delete', this.categoriesUrl + companyId, {body: category});
 
+  }
+
+  reorderCategoryUp(category: Category, companyId: string) {
+    return this.http.post<Category[]>(this.categorieUpUrl + companyId, category);
+  }
+
+  reorderCategoryDown(category: Category, companyId: string) {
+    return this.http.post<Category[]>(this.categorieDownUrl + companyId, category);
   }
 }
