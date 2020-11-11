@@ -22,7 +22,7 @@ $ docker build -t mamuska .
 Then run it:
 
 ```
-$ docker run -d -p 80:80 --name mamuska mamuska
+$ sudo docker run -d -p 80:80 -v "/home/zapperson/letsencrypt:/etc/letsencrypt" --network host --name zapperson-frontend zapperson-frontend
 ```
 
-You will be able to access the app through `http://localhost`
+You will be able to access the app through `https://localhost`
