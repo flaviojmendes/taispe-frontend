@@ -125,7 +125,9 @@ export class OrderComponent implements OnInit {
 
   getButtonColor() {
     if (this.company) {
-      return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${this.company.primaryColor || '#fec059'} !important; color: ${this.company.backgroundColor} !important;`);
+      return this.sanitizer
+      .bypassSecurityTrustStyle(`background-color: ${this.company.primaryColor || '#fec059'} !important;` +
+                                                    `color: ${this.company.backgroundColor} !important;`);
     }
   }
 
