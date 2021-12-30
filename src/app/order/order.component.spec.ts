@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderComponent } from './order.component';
 
-describe('PedidoComponent', () => {
+describe('OrderComponent', () => {
   let component: OrderComponent;
   let fixture: ComponentFixture<OrderComponent>;
 
@@ -25,18 +25,17 @@ describe('PedidoComponent', () => {
 
 
 
-  it('should update total', () => {
-    component.item1 = 1;
-    component.item2 = 2;
+  fit('should update total', () => {
+    component.company = {
+      deliveryPrice: 10
+    }
     component.updateTotal();
-    expect(component.total).toBe(36.97);
+    expect(component.total).toBe(10);
   });
 
   it('should update order with 4 items', () => {
-    component.item1 = 1;
-    component.item2 = 2;
-    component.item3 = 1;
-    component.item4 = 1;
+    component.cart['Coca'].quantity = 1;
+    component.cart['Coca'].price = 3;
     component.comments = 'Hello World';
     component.updateOrder();
     expect(component.order).toBe('%60%60%60Ol%C3%A1%2C%20gostaria%20de%20pedir%3A%20%0A---------------' +

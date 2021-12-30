@@ -5,6 +5,7 @@ import {CompanyService} from '../service/company.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../environments/environment';
 import {DomSanitizer} from '@angular/platform-browser';
+import '../model/product.model'
 
 @Component({
   selector: 'app-pedido',
