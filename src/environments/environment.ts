@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'http://localhost:8181',
-  authUrl: 'http://localhost:4200/auth'
+  backendUrl: 'https://menu.taispe.com:8181',
+  authUrl: 'https://menu.taispe.com/auth'
 };
 
 /*
