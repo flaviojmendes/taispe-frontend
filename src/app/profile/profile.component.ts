@@ -57,6 +57,7 @@ export class ProfileComponent implements OnInit {
           this.getCategories();
         } else {
           this.company = {email: data.email};
+          this.company.currency = 'BRL';
         }
       });
     });
