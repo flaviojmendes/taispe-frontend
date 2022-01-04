@@ -44,6 +44,11 @@ export class OrderComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.companyService.getCompanyByUrl(params.url).subscribe(company => {
         this.company = company;
+
+        if(!this.company.currency) {
+          this.company.currency = 'BRL';
+        }
+
         this.companyLoadingStatus = 'OK';
         this.getCategoryByPage(0);
         this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = company.backgroundColor;

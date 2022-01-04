@@ -49,6 +49,11 @@ export class ProfileComponent implements OnInit {
       this.companyService.getCompanyByEmail(data.email).subscribe(value => {
         if (value) {
           this.company = value;
+
+          if(!this.company.currency) {
+            this.company.currency = 'BRL';
+          }
+
           this.getCategories();
         } else {
           this.company = {email: data.email};
