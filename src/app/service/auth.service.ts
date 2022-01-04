@@ -16,7 +16,7 @@ export class AuthService {
   auth0Client$ = (from(
     createAuth0Client({
       domain: 'zapperson.us.auth0.com',
-      client_id: '6f14aMt50o8SLp3IndysC56UXarlT5Wl',
+      client_id: environment.clientID,
       redirect_uri: environment.authUrl
     })
   ) as Observable<Auth0Client>).pipe(
@@ -131,7 +131,7 @@ export class AuthService {
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log out
       client.logout({
-        client_id: '6f14aMt50o8SLp3IndysC56UXarlT5Wl',
+        client_id: environment.clientID,
         returnTo: environment.authUrl
       });
     });

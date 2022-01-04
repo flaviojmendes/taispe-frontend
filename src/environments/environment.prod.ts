@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
   backendUrl: 'https://menu.taispe.com:8181',
-  authUrl: 'https://menu.taispe.com/auth'
+  authUrl: 'https://menu.taispe.com/auth',
+  cliendID: '6f14aMt50o8SLp3IndysC56UXarlT5Wl'
 };
