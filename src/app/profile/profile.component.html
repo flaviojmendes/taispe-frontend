@@ -98,6 +98,18 @@
                 </div>
 
 
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="backgroundColor">Moeda:</label>
+                    <select id="currency" name="currency" class="form-control" [(ngModel)]="company.currency">
+                      <option *ngFor="let currency of currencies" [value]="currency.name">{{currency.symbol}}</option>
+
+                  </select>
+
+                  </div>
+                </div>
+
+
                 <div *ngIf="company.url" class="col-md-12 text-center align-middle">
                   <hr class="my-4">
                   <span  class="align-middle">Seu link para acesso é <a target="_blank" href="https://menu.taispe.com/{{company.url}}">https://menu.taispe.com/{{company.url}}</a></span>
@@ -263,7 +275,7 @@
                 <tbody>
                 <tr *ngFor="let product of products">
                   <td>{{product.label}}</td>
-                  <td>{{product.price | currency:'BRL':true}}</td>
+                  <td>{{product.price | currency:company.currency:true}}</td>
                   <td>
                     <button type="button" class="btn btn-sm btn-warning action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal"><fa-icon [icon]="faEdit"></fa-icon><span class="d-none d-lg-block"> Editar</span></button>
                     <button type="button" class="btn btn-sm btn-danger action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#removeProductModal"><fa-icon [icon]="faTrashAlt"></fa-icon><span class="d-none d-lg-block"> Remover</span></button>
@@ -346,7 +358,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="text-dark" for="productPrice">Preço</label>
-                <input [(ngModel)]="product.price" name="price" type="text" class="form-control" id="productPrice" currencyMask [options]="{ allowNegative: false, prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }">
+                <input [(ngModel)]="product.price" name="price" type="text" class="form-control" id="productPrice" currencyMask [options]="{ allowNegative: false, prefix: company.currency, thousands: '.', decimal: ',', precision: 2 }">
               </div>
             </div>
 

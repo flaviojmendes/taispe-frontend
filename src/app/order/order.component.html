@@ -46,7 +46,7 @@
             <div class="row justify-content-center h-100">
               <div class="col-8 col-md-12 d-flex flex-column">
                 <div class="col-12 d-flex flex-column">
-                  <h5 class="card-title">{{product.label}}{{product.price ? ' - ' + (product.price | currency:'BRL':true) : ''}}</h5>
+                  <h5 class="card-title">{{product.label}}{{product.price ? ' - ' + (product.price | currency:company.currency:true) : ''}}</h5>
                   <div *ngFor="let description of product.description">
                     <p class="product-description card-text">{{description}}</p>
                   </div>
@@ -137,7 +137,7 @@
     <div class="row">
 
       <div class="col-md-12 text-center line-total">
-        <span [attr.style]="getPrimaryColor()">Seu total será de {{total | currency:'BRL':true}} {{company?.deliveryPrice ? '(incluso taxa de entrega)' : ''}}</span>
+        <span [attr.style]="getPrimaryColor()">Seu total será de {{total | currency:company.currency:true}} {{company?.deliveryPrice ? '(incluso taxa de entrega)' : ''}}</span>
       </div>
     </div>
 

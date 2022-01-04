@@ -11,6 +11,7 @@ interface Company {
  requireAddress?: boolean;
  requireName?: boolean;
  description?: string;
+ currency?: string;
 }
 
 interface Category {

@@ -20,6 +20,13 @@ export class ProfileComponent implements OnInit {
   faAngleUp = faAngleUp;
   faAngleDown = faAngleDown;
 
+  currencies = [
+    {name:'BRL', symbol:'R$'},
+    {name:'USD', symbol:'$'},
+    {name:'EUR', symbol:'€'},
+    {name:'GBP', symbol:'£'}
+  ];
+
   saving = false;
 
   invalidFields: any = {};
