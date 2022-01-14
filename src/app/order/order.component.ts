@@ -95,7 +95,7 @@ export class OrderComponent implements OnInit {
 
   updateOrder() {
     const valid = this.validate();
-    this.order = this.orderService.buildOrder(this.cart, this.comments, this.company.deliveryPrice, this.name, this.address);
+    this.order = this.orderService.buildOrder(this.cart, this.comments, this.company.deliveryPrice, this.name, this.address, this.company.language, this.company.currency);
     if (!valid) {
       document.querySelector('#personalData').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }

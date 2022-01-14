@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
 import {CurrencyPipe} from '@angular/common';
+import { LanguageUtil } from 'src/util/language.util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  constructor(private currencyPipe: CurrencyPipe) { }
+  constructor(private currencyPipe: CurrencyPipe, public languageUtil: LanguageUtil) { }
 
   SEPARATOR = '\n---------------\n';
 
-  buildOrder(cart, comments, deliveryPrice, name, address) {
+  buildOrder(cart, comments, deliveryPrice, name, address, language, currency) {
     let order = '';
 
-    const title = 'Olá, gostaria de pedir: ';
+    const title = this.languageUtil.getByCode(language, 'would_like_to_order') + ': ';
     const orderText = this.buildListItems(cart);
-    const commentsTitle = 'Observações: ';
-    const totalText = 'Total: ' + this.updateTotal(cart, deliveryPrice);
+    const commentsTitle = this.languageUtil.getByCode(language, 'observations') + ': ';
+    const totalText = this.languageUtil.getByCode(language, 'total') + ': ' + this.updateTotal(cart, deliveryPrice, currency);
     const commentsText = comments && comments !== '' ? commentsTitle + '\n' + comments + this.SEPARATOR : '';
 
-    const nameTitle = 'Nome: ';
+    const nameTitle = this.languageUtil.getByCode(language, 'name') + ': ';
     const nameText = name && name !== '' ? nameTitle + '\n' + name + this.SEPARATOR : '';
-    const addressTitle = 'Endereço: ';
+    const addressTitle = this.languageUtil.getByCode(language, 'address') + ': ';
     const addressText = address && address !== '' ? addressTitle + '\n' + address + this.SEPARATOR : '';
     order = '```' +
       title + this.SEPARATOR +
@@ -46,13 +47,13 @@ export class OrderService {
     return orderItems;
   }
 
-  updateTotal(cart: any, deliveryPrice: number) {
+  updateTotal(cart: any, deliveryPrice: number, currency: string) {
     let total = deliveryPrice ? deliveryPrice : 0;
 
     for (const key of Object.keys(cart)) {
       total += cart[key].quantity * cart[key].price;
     }
-    const totalPrice = this.currencyPipe.transform(total, 'BRL');
+    const totalPrice = this.currencyPipe.transform(total, currency ? currency : 'BRL');
     return totalPrice;
   }
 

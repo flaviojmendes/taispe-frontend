@@ -34,12 +34,12 @@ export const language = {
   to_add: '¡para agregar!',
   sure_remove: '¿Está seguro de que desea eliminar?',
   currency: 'Moneda:',
-  observations: 'Observaciones',
+  observations: 'Notas',
   personal_data: 'Datos personales',
   address: 'Dirección',
   your_total: 'Tu total será ',
   delivery_included: '(tarifa de envío incluida)',
-  order_now: '¡Ordene ahora a través de Whatsapp!',
+  order_now: 'Pide ahora a través de Whatsapp!',
   i_want: '¡Lo quiero!'
 
 };
