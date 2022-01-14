@@ -9,18 +9,29 @@
           <div class="card-body">
             <div class="container">
               <div class="row">
-                <div class="col-md-12 text-center">
-                  <h2 class="">Informações Básicas</h2>
+
+                <div class="col-md-10 text-center">
+                  <h2 class="">{{languageUtil.getByCode(company.language, 'basic_info')}}</h2>
+                </div>
+                <div class="col-md-2 text-center">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                      {{company.language ? getLanguageName(company.language) : 'Português'}} <span class="flag-icon flag-icon-{{company.language ? getLanguageFlag(company.language) : 'br'}} flag-icon-squared"></span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" *ngFor="let language of languages" (click)="setLanguage(language)">{{language.name}} <span class="flag-icon flag-icon-{{language.flag}} flag-icon-squared"></span></a>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="email">Seu Email é:</label>
+                    <label for="email">{{languageUtil.getByCode(company.language, 'your_email_is')}}</label>
                     <input [(ngModel)]="company.email" name="email" type="email" class="form-control" id="email" disabled>
                   </div>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
-                    <label for="email">Qual o Número do Whatsapp? (55 + SEU DDD + SEU NUMERO)</label>
+                    <label for="email">{{languageUtil.getByCode(company.language, 'what_is_your_wpp_number')}}</label>
                     <input [(ngModel)]="company.whatsappNumber" name="whatsappNumber" type="text" class="form-control" id="whatsappNumber" [class.is-invalid]="invalidFields.whatsappNumber">
                     <div class="invalid-feedback">
                       Por favor informe seu número de Whatsapp.
@@ -30,7 +41,7 @@
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="email">Qual o Nome do Seu Negócio?</label>
+                    <label for="email">{{languageUtil.getByCode(company.language, 'what_is_business_name')}}</label>
                     <input [(ngModel)]="company.name" name="name" type="text" class="form-control" id="name" [class.is-invalid]="invalidFields.name">
                     <div class="invalid-feedback">
                       Por favor informe o nome do seu negócio.
@@ -40,7 +51,7 @@
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="email">Defina um Atalho para acesso:</label>
+                    <label for="email">{{languageUtil.getByCode(company.language, 'define_access_shortcut')}}</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text">menu.taispe.com/</div>
@@ -55,7 +66,7 @@
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="deliveryPrice">Quanto você cobra pela entrega?</label>
+                    <label for="deliveryPrice">{{languageUtil.getByCode(company.language, 'how_much_delivery')}}</label>
                     <input [(ngModel)]="company.deliveryPrice" name="deliveryPrice" type="text" class="form-control" id="deliveryPrice" currencyMask [options]="{ allowNegative: false, prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }" >
                   </div>
                 </div>
@@ -63,44 +74,37 @@
                 <div class="col-md-6" style="margin: auto;">
                   <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="nameRequired" [checked]="company.requireName" (change)="company.requireName = !company.requireName">
-                    <label class="custom-control-label" for="nameRequired">Exigir Nome do Cliente</label>
+                    <label class="custom-control-label" for="nameRequired">{{languageUtil.getByCode(company.language, 'customer_name_mandatory')}}</label>
                   </div>
                   <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input"  id="addressRequired" [checked]="company.requireAddress" (change)="company.requireAddress = !company.requireAddress">
-                    <label class="custom-control-label" for="addressRequired">Exigir Endereço do Cliente</label>
+                    <label class="custom-control-label" for="addressRequired">{{languageUtil.getByCode(company.language, 'customer_address_mandatory')}}</label>
                   </div>
                 </div>
 
-<!--                <div class="col-md-12">-->
-<!--                  <div class="form-group text-center">-->
-<!--                    <label class="out-label" for="description">Uma breve descrição do seu negócio:</label>-->
-<!--                    <textarea [value]="company.description" (input)="company.description = $event.target.value;" class="form-control" id="description" rows="3"></textarea>-->
-<!--                  </div>-->
-<!--                </div>-->
 
                 <div class="col-md-12 text-center">
-                  <h3>Personalize</h3>
+                  <h3>{{languageUtil.getByCode(company.language, 'personalize')}}</h3>
                 </div>
 
 
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="primaryColor">Cor Primária:</label>
+                    <label for="primaryColor">{{languageUtil.getByCode(company.language, 'primary_color')}}</label>
                     <input id="primaryColor" class="form-control" [cpPosition]="'bottom'" [colorPicker]="company?.primaryColor" [style.background]="company?.primaryColor" (colorPickerChange)="company.primaryColor=$event"/>
                   </div>
                 </div>
 
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="backgroundColor">Cor de Fundo:</label>
+                    <label for="backgroundColor">{{languageUtil.getByCode(company.language, 'background_color')}}</label>
                     <input id="backgroundColor" class="form-control" [cpPosition]="'bottom'" [colorPicker]="company?.backgroundColor" [style.background]="company?.backgroundColor" (colorPickerChange)="company.backgroundColor=$event"/>
                   </div>
                 </div>
 
-
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="backgroundColor">Moeda:</label>
+                    <label for="backgroundColor">{{languageUtil.getByCode(company.language, 'currency')}}</label>
                     <select id="currency" name="currency" class="form-control" [(ngModel)]="company.currency">
                       <option *ngFor="let currency of currencies" [value]="currency.name">{{currency.symbol}}</option>
 
@@ -112,7 +116,7 @@
 
                 <div *ngIf="company.url" class="col-md-12 text-center align-middle">
                   <hr class="my-4">
-                  <span  class="align-middle">Seu link para acesso é <a target="_blank" href="https://menu.taispe.com/{{company.url}}">https://menu.taispe.com/{{company.url}}</a></span>
+                  <span  class="align-middle">{{languageUtil.getByCode(company.language, 'your_access_link_is')}} <a target="_blank" href="https://menu.taispe.com/{{company.url}}">https://menu.taispe.com/{{company.url}}</a></span>
                   <hr class="my-4">
 
                 </div>
@@ -122,7 +126,7 @@
               <div class="row justify-content-md-center">
                 <div class="col-md-6 text-center">
                   <button type="button" class="btn btn-warning" (click)="save()" [disabled]="saving">
-                    <span *ngIf="!saving">Salvar</span>
+                    <span *ngIf="!saving">{{languageUtil.getByCode(company.language, 'save')}}</span>
                     <div *ngIf="saving" class="spinner-border text-dark" role="status">
                       <span class="sr-only">Loading...</span>
                     </div>
@@ -145,14 +149,14 @@
           <div class="card-body">
             <div class="container">
               <div class="col-md-12 text-center">
-                <h2>Categorias</h2>
+                <h2>{{languageUtil.getByCode(company.language, 'categories')}}</h2>
               </div>
               <div *ngIf="categories.length === 0" class="row text-center">
                 <div class="col-xs-12">
                   <p class="lead">
-                    Hmm.. 🤔 Parece que você ainda não possui nenhuma categoria. Clique em
-                    <button type="button" class="btn btn-warning" (click)="newCategory()" data-toggle="modal" data-target="#editCategoryModal">Nova Categoria</button>
-                     para adicionar sua primeira!
+                    {{languageUtil.getByCode(company.language, 'no_category')}}
+                    <button type="button" class="btn btn-warning" (click)="newCategory()" data-toggle="modal" data-target="#editCategoryModal">{{languageUtil.getByCode(company.language, 'new_category')}}</button>
+                    {{languageUtil.getByCode(company.language, 'add_your_first')}}
                   </p>
                 </div>
               </div>
@@ -160,7 +164,7 @@
 
               <div *ngIf="categories.length > 0" class="row">
                 <div class="col-md-12 text-right">
-                  <button type="button" class="btn btn-warning" (click)="newCategory()" data-toggle="modal" data-target="#editCategoryModal">Nova Categoria</button>
+                  <button type="button" class="btn btn-warning" (click)="newCategory()" data-toggle="modal" data-target="#editCategoryModal">{{languageUtil.getByCode(company.language, 'new_category')}}</button>
                 </div>
               </div>
 
@@ -169,17 +173,17 @@
                   <table class="table table-light">
                     <thead>
                     <tr>
-                      <th scope="col">Nome</th>
-                      <th scope="col">Ações</th>
-                      <th scope="col">Ordem</th>
+                      <th scope="col">{{languageUtil.getByCode(company.language, 'name')}}</th>
+                      <th scope="col">{{languageUtil.getByCode(company.language, 'actions')}}</th>
+                      <th scope="col">{{languageUtil.getByCode(company.language, 'order')}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let category of categories">
                       <td>{{category.label}}</td>
                       <td>
-                        <button type="button" class="btn btn-sm btn-warning action-button" (click)="setCategory(category)" data-toggle="modal" data-target="#editCategoryModal"><fa-icon [icon]="faEdit"></fa-icon> Editar</button>
-                        <button type="button" class="btn btn-sm btn-danger action-button" (click)="setCategory(category)"  data-toggle="modal" data-target="#removeCategoryModal"><fa-icon [icon]="faTrashAlt"></fa-icon> Remover</button>
+                        <button type="button" class="btn btn-sm btn-warning action-button" (click)="setCategory(category)" data-toggle="modal" data-target="#editCategoryModal"><fa-icon [icon]="faEdit"></fa-icon> {{languageUtil.getByCode(company.language, 'edit')}}</button>
+                        <button type="button" class="btn btn-sm btn-danger action-button" (click)="setCategory(category)"  data-toggle="modal" data-target="#removeCategoryModal"><fa-icon [icon]="faTrashAlt"></fa-icon> {{languageUtil.getByCode(company.language, 'remove')}}</button>
                       </td>
                       <td>
                         <button type="button" class="btn btn-sm btn-info action-button" (click)="setCategoryOrderUp(category)"><fa-icon [icon]="faAngleUp"></fa-icon></button>
@@ -204,7 +208,7 @@
           <div class="container">
             <div class="row justify-content-md-center">
               <div class="col-md-6 text-center">
-                Feito com ♥ por Flávio Mendes.
+                {{languageUtil.getByCode(company.language, 'made_with_love')}} Flávio Mendes.
 
               </div>
             </div>
@@ -222,7 +226,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editCategoryModalLabel">Editar Categoria</h5>
+        <h5 class="modal-title" id="editCategoryModalLabel">{{languageUtil.getByCode(company.language, 'edit_category')}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -233,23 +237,23 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label class="text-dark" for="categoryName">Nome da Categoria</label>
+                <label class="text-dark" for="categoryName">{{languageUtil.getByCode(company.language, 'category_name')}}</label>
                 <input [(ngModel)]="category.label" name="name" type="text" class="form-control" id="categoryName">
               </div>
             </div>
           </div>
           <div *ngIf="category.id" class="row">
             <div class="col-md-12">
-              <h3>Produtos</h3>
+              <h3>{{languageUtil.getByCode(company.language, 'products')}}</h3>
             </div>
           </div>
 
           <div *ngIf="category.id && products.length === 0" class="row text-center">
             <div class="col-xs-12">
               <p class="lead">
-                Essa categoria ainda não possui produtos cadastrados. Clique em
-                <button type="button" class="btn btn-warning" (click)="newProduct()" data-toggle="modal" data-target="#editProductModal">Novo Produto</button>
-                para adicionar!
+                {{languageUtil.getByCode(company.language, 'this_category_no_products')}}
+                <button type="button" class="btn btn-warning" (click)="newProduct()" data-toggle="modal" data-target="#editProductModal">{{languageUtil.getByCode(company.language, 'new_product')}}</button>
+                {{languageUtil.getByCode(company.language, 'to_add')}}
               </p>
             </div>
           </div>
@@ -257,7 +261,7 @@
 
           <div *ngIf="category.id && products.length > 0" class="row">
             <div class="col-md-12">
-              <button type="button" class="btn btn-warning" (click)="newProduct()" data-toggle="modal" data-target="#editProductModal">Novo Produto</button>
+              <button type="button" class="btn btn-warning" (click)="newProduct()" data-toggle="modal" data-target="#editProductModal">{{languageUtil.getByCode(company.language, 'new_product')}}</button>
             </div>
           </div>
 
@@ -266,19 +270,19 @@
               <table class="table table-light">
                 <thead>
                 <tr>
-                  <th scope="col">Nome</th>
-                  <th scope="col">Preço</th>
-                  <th scope="col">Ações</th>
-                  <th scope="col">Ordem</th>
+                  <th scope="col">{{languageUtil.getByCode(company.language, 'name')}}</th>
+                  <th scope="col">{{languageUtil.getByCode(company.language, 'price')}}</th>
+                  <th scope="col">{{languageUtil.getByCode(company.language, 'actions')}}</th>
+                  <th scope="col">{{languageUtil.getByCode(company.language, 'order')}}</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let product of products">
                   <td>{{product.label}}</td>
-                  <td>{{product.price | currency:company.currency:true}}</td>
+                  <td>{{product.price | currency:'BRL':true}}</td>
                   <td>
-                    <button type="button" class="btn btn-sm btn-warning action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal"><fa-icon [icon]="faEdit"></fa-icon><span class="d-none d-lg-block"> Editar</span></button>
-                    <button type="button" class="btn btn-sm btn-danger action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#removeProductModal"><fa-icon [icon]="faTrashAlt"></fa-icon><span class="d-none d-lg-block"> Remover</span></button>
+                    <button type="button" class="btn btn-sm btn-warning action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#editProductModal"><fa-icon [icon]="faEdit"></fa-icon><span class="d-none d-lg-block"> {{languageUtil.getByCode(company.language, 'edit')}}</span></button>
+                    <button type="button" class="btn btn-sm btn-danger action-button" (click)="setProduct(product)" data-toggle="modal" data-target="#removeProductModal"><fa-icon [icon]="faTrashAlt"></fa-icon><span class="d-none d-lg-block"> {{languageUtil.getByCode(company.language, 'remove')}}</span></button>
                   </td>
                   <td>
                     <button type="button" class="btn btn-sm btn-info action-button" (click)="setProductOrderUp(product)"><fa-icon [icon]="faAngleUp"></fa-icon></button>
@@ -295,8 +299,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-warning" (click)="saveCategory()"  data-dismiss="modal">Salvar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{languageUtil.getByCode(company.language, 'close')}}</button>
+        <button type="button" class="btn btn-warning" (click)="saveCategory()"  data-dismiss="modal">{{languageUtil.getByCode(company.language, 'save')}}</button>
       </div>
     </div>
   </div>
@@ -308,7 +312,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="removeCategoryModalLabel">Remove Categoria</h5>
+        <h5 class="modal-title" id="removeCategoryModalLabel">{{languageUtil.getByCode(company.language, 'remove')}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -318,7 +322,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              Tem certeza em remover a categoria <strong>{{category.label}}?</strong>
+              {{languageUtil.getByCode(company.language, 'sure_remove')}} <strong>{{category.label}}?</strong>
             </div>
 
           </div>
@@ -327,8 +331,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-warning" (click)="deleteCategory()"  data-dismiss="modal">Remover</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{languageUtil.getByCode(company.language, 'close')}}</button>
+        <button type="button" class="btn btn-warning" (click)="deleteCategory()"  data-dismiss="modal">{{languageUtil.getByCode(company.language, 'remove')}}</button>
       </div>
     </div>
   </div>
@@ -340,7 +344,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editProductModalLabel">Editar Produto</h5>
+        <h5 class="modal-title" id="editProductModalLabel">{{languageUtil.getByCode(company.language, 'edit')}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -351,27 +355,27 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label class="text-dark" for="productName">Nome do Produto</label>
+                <label class="text-dark" for="productName">{{languageUtil.getByCode(company.language, 'product_name')}}</label>
                 <input [(ngModel)]="product.label" name="name" type="text" class="form-control" id="productName">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label class="text-dark" for="productPrice">Preço</label>
-                <input [(ngModel)]="product.price" name="price" type="text" class="form-control" id="productPrice" currencyMask [options]="{ allowNegative: false, prefix: company.currency, thousands: '.', decimal: ',', precision: 2 }">
+                <label class="text-dark" for="productPrice">{{languageUtil.getByCode(company.language, 'price')}}</label>
+                <input [(ngModel)]="product.price" name="price" type="text" class="form-control" id="productPrice" currencyMask [options]="{ allowNegative: false, prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }">
               </div>
             </div>
 
             <div class="col-md-12">
               <div class="form-group">
-                <label class="text-dark" for="productDescription">Descrição Produto</label>
+                <label class="text-dark" for="productDescription">{{languageUtil.getByCode(company.language, 'product_description')}}</label>
                 <textarea [(ngModel)]="product.description[0]" name="productDescription" type="text" class="form-control" id="productDescription" rows="3"></textarea>
               </div>
             </div>
 
             <div class="col-md-12">
               <div class="form-group">
-                <label class="text-dark" for="productPrice">Imagem</label>
+                <label class="text-dark" for="productPrice">{{languageUtil.getByCode(company.language, 'image')}}</label>
                 <input (change)="imgChanged($event)" name="productImage" type="file" class="form-control" id="productImage">
               </div>
               <img *ngIf="product.img" src="{{product.img}}" class="img-thumbnail" alt="...">
@@ -384,7 +388,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-warning" (click)="saveProduct()"  data-dismiss="modal">Salvar</button>
+        <button type="button" class="btn btn-warning" (click)="saveProduct()"  data-dismiss="modal">{{languageUtil.getByCode(company.language, 'save')}}</button>
       </div>
     </div>
   </div>
@@ -395,7 +399,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="removeProductModalLabel">Remover Produto</h5>
+        <h5 class="modal-title" id="removeProductModalLabel">{{languageUtil.getByCode(company.language, 'remove')}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -405,7 +409,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              Tem certeza em remover o produto <strong>{{product.label}}?</strong>
+              {{languageUtil.getByCode(company.language, 'sure_remove')}} <strong>{{product.label}}?</strong>
             </div>
 
           </div>
@@ -414,8 +418,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-warning" (click)="deleteProduct()"  data-dismiss="modal">Remover</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{languageUtil.getByCode(company.language, 'close')}}</button>
+        <button type="button" class="btn btn-warning" (click)="deleteProduct()"  data-dismiss="modal">{{languageUtil.getByCode(company.language, 'remove')}}</button>
       </div>
     </div>
   </div>

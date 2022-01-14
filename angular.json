@@ -31,7 +31,8 @@
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/styles.sass"
+              "src/styles.sass",
+              "./node_modules/flag-icon-css/css/flag-icons.min.css"
             ],
             "scripts": []
           },
@@ -113,7 +114,8 @@
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/styles.sass"
+              "src/styles.sass",
+              "node_modules/flag-icon-css/css/flag-icon.min.css"
             ],
             "scripts": []
           }

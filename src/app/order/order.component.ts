@@ -6,6 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../environments/environment';
 import {DomSanitizer} from '@angular/platform-browser';
 import '../model/product.model'
+import { LanguageUtil } from 'src/util/language.util';
 
 @Component({
   selector: 'app-pedido',
@@ -17,7 +18,8 @@ export class OrderComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private orderService: OrderService, private categoryService: CategoryService,
               private companyService: CompanyService, private sanitizer: DomSanitizer,
-              private elementRef: ElementRef) {}
+              private elementRef: ElementRef,
+              public languageUtil: LanguageUtil) {}
 
   order: string;
 

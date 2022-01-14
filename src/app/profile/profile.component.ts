@@ -4,7 +4,7 @@ import {CompanyService} from '../service/company.service';
 import {CategoryService} from '../service/category.service';
 import {ProductService} from '../service/product.service';
 import { faEdit, faTrashAlt, faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
-
+import { LanguageUtil } from 'src/util/language.util';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -13,12 +13,17 @@ import { faEdit, faTrashAlt, faAngleUp, faAngleDown } from '@fortawesome/free-so
 export class ProfileComponent implements OnInit {
 
   constructor(public auth: AuthService, public companyService: CompanyService,
-              public categoryService: CategoryService, public productService: ProductService) { }
+              public categoryService: CategoryService, public productService: ProductService,
+              public languageUtil: LanguageUtil) { }
 
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
   faAngleUp = faAngleUp;
   faAngleDown = faAngleDown;
+
+  saving = false;
+
+  invalidFields: any = {};
 
   currencies = [
     {name:'BRL', symbol:'R$'},
@@ -27,9 +32,23 @@ export class ProfileComponent implements OnInit {
     {name:'GBP', symbol:'£'}
   ];
 
-  saving = false;
+  languages: any[] = [
+    {
+      code: 'pt-br',
+      name: 'Português',
+      flag: 'br'
+    },
+    {
+      code: 'en-gb',
+      name: 'English',
+      flag: 'gb'
+    },
+    {
+      code: 'es-es',
+      name: 'Español',
+      flag: 'es'
+    },]
 
-  invalidFields: any = {};
 
   company: Company = {};
   categories: Category[] = [{}];
@@ -57,7 +76,6 @@ export class ProfileComponent implements OnInit {
           this.getCategories();
         } else {
           this.company = {email: data.email};
-          this.company.currency = 'BRL';
         }
       });
     });
@@ -256,4 +274,27 @@ export class ProfileComponent implements OnInit {
       this.getProducts(this.category.id);
     });
   }
+
+  setLanguage(language: any) {
+    this.company.language = language.code;
+  }
+
+  getLanguageFlag(languageCode: string) {
+    return languageCode.split('-')[1];
+  }
+
+  getLanguageName(languageCode: string) {
+    if(languageCode === 'pt-br'){
+      return 'Português';
+    }
+
+    if(languageCode === 'en-gb'){
+      return 'English';
+    }
+
+    if(languageCode === 'es-es'){
+      return 'Español';
+    }
+  }
 }
+
