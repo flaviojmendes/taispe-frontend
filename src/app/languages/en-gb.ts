@@ -40,5 +40,10 @@ export const language = {
   your_total: 'Your order total will be ',
   delivery_included: '(delivery included)',
   order_now: 'Order Now on Whatsapp!',
-  i_want: 'I Want!'
+  i_want: 'I Want!',
+  would_like_to_order: 'Hi, I would like to order ',
+  total: 'Total',
+  quantity: 'Quantity ',
+  inform_name: "Please inform your name.",
+  inform_address: "Please inform your address."
 };

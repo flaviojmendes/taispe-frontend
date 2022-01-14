@@ -53,7 +53,7 @@
                   <!-- Choose Quantity Button --->
                   <div *ngIf="product.qtyAvailable" ngbDropdown class="qty-available d-inline-block mt-auto">
                     <button class="btn" id="item" ngbDropdownToggle [attr.style]="getButtonColor()">
-                      {{cart[product.id]?.quantity ? 'Quantidade ' + cart[product.id]?.quantity : languageUtil.getByCode(company.language, 'i_want')}}</button>
+                      {{cart[product.id]?.quantity ? languageUtil.getByCode(company.language, 'quantity') + cart[product.id]?.quantity : languageUtil.getByCode(company.language, 'i_want')}}</button>
                     <div ngbDropdownMenu aria-labelledby="item">
                       <button class="dropdown-item"
                               *ngFor="let item of createArrayIndex(product.qtyAvailable)"

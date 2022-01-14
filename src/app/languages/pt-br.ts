@@ -40,6 +40,12 @@ export const language = {
   your_total: 'Seu total será de ',
   delivery_included: '(incluso taxa de entrega)',
   order_now: 'Pedir Agora via Whatsapp!',
-  i_want: 'Eu Quero!'
+  i_want: 'Eu Quero!',
+  would_like_to_order: 'Olá, gostaria de pedir',
+  total: 'Total',
+  quantity: 'Quantidade ',
+  inform_name: "Por favor informe o seu Nome.",
+  inform_address: "Por favor informe o seu Endereço."
+
 
 };
