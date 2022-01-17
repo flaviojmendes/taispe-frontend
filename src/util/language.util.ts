@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core'
 export class LanguageUtil {
 
  getByCode(code: string, label: string) {
-    alert(code)
+
     if(!code) {
       return ptBr[label]
     }

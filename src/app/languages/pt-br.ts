@@ -45,7 +45,21 @@ export const language = {
   total: 'Total',
   quantity: 'Quantidade ',
   inform_name: "Por favor informe o seu Nome.",
-  inform_address: "Por favor informe o seu Endereço."
+  inform_address: "Por favor informe o seu Endereço.",
+  hello: "Olá! 👋🏼",
+  you_business_need: "Seu negócio precisa de um menu 📄 digital?",
+  click_to_start: "Clique aqui para começar!",
+  how_it_works: "Como Funciona?",
+  sign_up: "Cadastre-se",
+  share: "Compartilhe",
+  receive_orders: "Receba pedidos via Whatsapp",
+  about: "Sobre",
+  if_got_here: "Se você chegou até aqui é porque interessou em ter um 📄 Menu Online para pedidos via WhatsApp.",
+  feel_free: "Sinta-se à vontade, quer você venda 🥙 alimentos, 🧶 artesanato, ✒ serviços, etc! A idéia é que possa oferecer QUALQUER COISA!",
+  why_free: "Meu nome é Flávio Mendes estou sempre procurando um jeito de simplificar a vida das pessoas. Se quer saaber um pouco do que me motiva a fazer coisas de graça você pode ler esse texto (em inglês) ",
+  here: "aqui",
+  why_let_customer: "Por que não deixar o cliente gastar o tempo que quiser escolhendo, e quando souber enviar tudo prontinho pelo WhatsApp?",
+  you_can_see_example: "Você pode ver um exemplo em"
 
 
 };
