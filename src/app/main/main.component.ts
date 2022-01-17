@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguageUtil } from 'src/util/language.util';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(public languageUtil: LanguageUtil) { }
+
+  language: string;
 
   ngOnInit() {
+    this.language = navigator.language.split('-')[0];
   }
+
+
 
 }

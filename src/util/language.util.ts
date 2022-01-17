@@ -14,15 +14,15 @@ export class LanguageUtil {
       return ptBr[label]
     }
 
-    if(code === 'pt-br') {
+    if(code === 'pt-br' || code == 'pt') {
       return ptBr[label]
     }
 
-    if(code === 'en-gb') {
+    if(code === 'en-gb' || code == 'en') {
       return enGb[label]
     }
 
-    if(code === 'es-es') {
+    if(code === 'es-es' || code == 'es') {
       return esEs[label]
     }
   }

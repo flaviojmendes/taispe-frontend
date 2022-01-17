@@ -108,7 +108,7 @@
         <label class="out-label" for="name" [attr.style]="getPrimaryColor()">{{languageUtil.getByCode(company.language, 'name')}}</label>
         <input [(ngModel)]="name" name="name" type="text" class="form-control" id="name" [class.is-invalid]="invalidFields.name">
         <div class="invalid-feedback">
-          Por favor informe o seu Nome.
+          {{languageUtil.getByCode(company.language, 'inform_name')}}
         </div>
       </div>
     </div>
@@ -120,7 +120,7 @@
         <label class="out-label" for="address" [attr.style]="getPrimaryColor()">{{languageUtil.getByCode(company.language, 'address')}}</label>
         <textarea [value]="address" (input)="address = $event.target.value;" class="form-control" id="address" rows="3" [class.is-invalid]="invalidFields.address"></textarea>
         <div class="invalid-feedback">
-          Por favor informe o seu Endereço.
+          {{languageUtil.getByCode(company.language, 'inform_address')}}
         </div>
       </div>
     </div>

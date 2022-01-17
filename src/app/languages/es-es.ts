@@ -45,6 +45,20 @@ export const language = {
   total: 'Total',
   quantity: 'Cantidad ',
   inform_name: "Por favor, informe su nombre. ",
-  inform_address: "Por favor, informe su dirección. "
+  inform_address: "Por favor, informe su dirección. ",
+  hello: "¡Hola! 👋🏼",
+  you_business_need: "¿Tu Negocio necesita un menú 📄 digital?",
+  click_to_start: "¡Haz click aquí para comenzar!",
+  how_it_works: "¿Como funciona?",
+  sign_up: "Inscribirse",
+  share: "Compartir",
+  receive_orders: "Recibir pedidos por Whatsapp",
+  about: "Sobre",
+  if_got_here: "Si llegaste hasta aquí es porque te interesó tener un Menú Online 📄 que genere pedidos por Whatsapp.",
+  feel_free: "Siéntase libre de usarlo para cualquier propósito. ¡Puedes vender 🥙 comida, 🧶 artesanías, ✒ servicios y mucho más!",
+  why_free: "¿Es gratis? ¡SÍ! ¡Y siempre lo será! Si tiene curiosidad sobre por qué es gratis, haga clic en ",
+  here: "aquí",
+  why_let_customer: "¿Por qué dejar que el cliente dedique su tiempo a elegir cuando simplemente puede elegir en línea y enviarle su pedido listo?",
+  you_can_see_example: "Puedes ver un ejemplo práctico en "
 
 };
