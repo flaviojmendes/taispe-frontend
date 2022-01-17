@@ -13,7 +13,7 @@ export class MainComponent implements OnInit {
   language: string;
 
   ngOnInit() {
-    this.language = navigator.language.split('-')[0];
+    this.language = navigator.language.toLowerCase().split('-')[0];
   }
 
 
