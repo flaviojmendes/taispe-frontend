@@ -25,6 +25,8 @@ export class LanguageUtil {
     if(code === 'es-es' || code == 'es') {
       return esEs[label]
     }
+
+    return enGb[label]
   }
 
 }
