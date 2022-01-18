@@ -27,6 +27,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@ng-bootstrap/ng-bootstrap": "^6.2.0",
+    "angular2-qrcode": "^2.0.3",
     "bootstrap": "^4.5.0",
     "crypto-js": "^4.0.0",
     "flag-icon-css": "^4.1.7",

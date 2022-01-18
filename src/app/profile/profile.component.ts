@@ -21,6 +21,9 @@ export class ProfileComponent implements OnInit {
   faAngleUp = faAngleUp;
   faAngleDown = faAngleDown;
 
+  menuQrCode: string;
+  orderQrCode: string;
+
   saving = false;
 
   invalidFields: any = {};
@@ -68,6 +71,8 @@ export class ProfileComponent implements OnInit {
       this.companyService.getCompanyByEmail(data.email).subscribe(value => {
         if (value) {
           this.company = value;
+          this.menuQrCode = 'https://menu.taispe.com/menu/' + this.company.url;
+          this.orderQrCode = 'https://menu.taispe.com/' + this.company.url;
 
           if(!this.company.currency) {
             this.company.currency = 'BRL';

@@ -5,6 +5,7 @@ import { AuthGuard } from './guard/auth.guard';
 import {ProfileComponent} from './profile/profile.component';
 import {CompanyComponent} from './company/company.component';
 import {MainComponent} from './main/main.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'auth', component: CompanyComponent },
   { path: '', component: MainComponent },
   { path: ':url', component: OrderComponent },
+  { path: 'menu/:url', component: MenuComponent },
 
 ];
 

@@ -41,8 +41,6 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(environment.production);
-
     this.route.params.subscribe(params => {
       this.companyService.getCompanyByUrl(params.url).subscribe(company => {
         this.company = company;

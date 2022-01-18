@@ -10,7 +10,7 @@ export const language = {
   personalize: 'Personalize',
   primary_color: 'Cor Primária:',
   background_color: 'Cor de Fundo:',
-  your_access_link_is: 'Seu link para acesso é ',
+  your_access_link_is: 'Seu link para acesso da página de pedidos é ',
   save: 'Salvar',
   categories: 'Categorias',
   name: 'Nome',
@@ -59,7 +59,10 @@ export const language = {
   why_free: "Meu nome é Flávio Mendes estou sempre procurando um jeito de simplificar a vida das pessoas. Se quer saaber um pouco do que me motiva a fazer coisas de graça você pode ler esse texto (em inglês) ",
   here: "aqui",
   why_let_customer: "Por que não deixar o cliente gastar o tempo que quiser escolhendo, e quando souber enviar tudo prontinho pelo WhatsApp?",
-  you_can_see_example: "Você pode ver um exemplo em"
+  you_can_see_example: "Você pode ver um exemplo em",
+  your_menu_access_link_is: "Seu link para acesso do Menu é ",
+  your_order_qr_code: "Seu cliente pode acessar a página de pedidos com o QR Code:",
+  your_menu_qr_code: "Seu cliente pode acessar seu menu com o QR Code:"
 
 
 };

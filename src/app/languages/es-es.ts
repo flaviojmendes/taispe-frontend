@@ -10,7 +10,7 @@ export const language = {
   personalize: 'Personalizar',
   primary_color: 'Color primario:',
   background_color: 'Color de fondo:',
-  your_access_link_is: 'Tu enlace de acceso es ',
+  your_access_link_is: 'Su URL de acceso a la página de pedidos es',
   save: 'Guardar',
   categories: 'Categorías',
   name: 'Nombre',
@@ -59,6 +59,9 @@ export const language = {
   why_free: "¿Es gratis? ¡SÍ! ¡Y siempre lo será! Si tiene curiosidad sobre por qué es gratis, haga clic en ",
   here: "aquí",
   why_let_customer: "¿Por qué dejar que el cliente dedique su tiempo a elegir cuando simplemente puede elegir en línea y enviarle su pedido listo?",
-  you_can_see_example: "Puedes ver un ejemplo práctico en "
+  you_can_see_example: "Puedes ver un ejemplo práctico en ",
+  your_menu_access_link_is: "La URL de tu menú es ",
+  your_order_qr_code: "Su cliente puede acceder a su página de pedido con el código QR:",
+  your_menu_qr_code: "Tu cliente puede acceder a tu menú con el Código QR:"
 
 };

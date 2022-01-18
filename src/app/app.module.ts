@@ -19,6 +19,8 @@ import { MainComponent } from './main/main.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { UrlDirective } from './url.directive';
 import {ColorPickerModule} from 'ngx-color-picker';
+import { MenuComponent } from './menu/menu.component';
+import { QRCodeModule } from 'angular2-qrcode';
 
 registerLocaleData(localePt);
 
@@ -29,7 +31,8 @@ registerLocaleData(localePt);
     CompanyComponent,
     ProfileComponent,
     MainComponent,
-    UrlDirective
+    UrlDirective,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ registerLocaleData(localePt);
     FormsModule,
     CurrencyMaskModule,
     FontAwesomeModule,
-    ColorPickerModule
+    ColorPickerModule,
+    QRCodeModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'},
     CurrencyPipe,
