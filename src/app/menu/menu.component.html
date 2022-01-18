@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" [attr.style]="getPrimaryBgColor()">
+  <span class="navbar-brand"  [attr.style]="getBgFontColor()">{{company?.name}}</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown" >
+    <ul class="navbar-nav d-lg-none">
+      <li *ngFor="let category of categories" class="nav-item">
+        <a class="nav-link" [attr.style]="getBgFontColor()" routerLink="." fragment="header{{category.id}}" data-toggle="collapse"  [attr.data-target]="'.navbar-collapse.show'">{{category.label}}</a>
+      </li>
+    </ul>
+  </div>
+
+
+  <ul class="navbar-nav mr-auto d-none d-lg-block ">
+    <li class="nav-item dropdown ">
+      <a class="nav-link dropdown-toggle" [attr.style]="getBgFontColor()" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{languageUtil.getByCode(company.language, 'categories')}}
+      </a>
+      <div class="categories-menu dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a *ngFor="let category of categories" class="nav-link" routerLink="." fragment="header{{category.id}}">{{category.label}}</a>
+      </div>
+    </li>
+  </ul>
+
+</nav>
+
+
+<div *ngIf="companyLoadingStatus === 'OK'" class="main container-fluid">
+
+  <div *ngFor="let category of categories" class="row justify-content-md-center text-center mb-3">
+    <div class="col-md-12">
+       <h2 id="header{{category.id}}" class="category-label" [attr.style]="getPrimaryColor()">{{category.label}}</h2>
+
+    </div>
+    <div *ngFor="let product of category.products" id="col{{category.id}}"  class="col-lg-2 col-md-6 text-center mb-4">
+      <div class="card h-100" style="width:  95%;">
+
+        <img *ngIf="product.img" src="{{product.img}}" class="card-img-top product-image d-none d-md-block" alt="...">
+
+        <div class="card-body">
+          <!-- Product Info -->
+          <div class="container h-100">
+            <div class="row justify-content-center h-100">
+              <div class="col-8 col-md-12 d-flex flex-column">
+                <div class="col-12 d-flex flex-column">
+                  <h5 class="card-title">{{product.label}}{{product.price ? ' - ' + (product.price | currency:company.currency:true) : ''}}</h5>
+                  <div *ngFor="let description of product.description">
+                    <p class="product-description card-text">{{description}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 d-block d-md-none" style="margin: auto;">
+                <img *ngIf="product.img" src="{{product.img}}"  class="card-img-top product-image side-img" alt="...">
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading" class="row">
+    <div class="col-md-12 text-center">
+      <div class="spinner-border text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
+
+
